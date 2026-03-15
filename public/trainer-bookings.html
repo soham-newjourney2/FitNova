@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings | FitNova Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/trainer-portal.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="layout">
+        <!-- TRAINER SIDEBAR -->
+        <aside class="sidebar">
+            <h2>FitNova Pro</h2>
+            <div class="nav-links">
+                <a href="trainer-dashboard.html">Trainer Dashboard</a>
+                <a href="trainer-bookings.html" class="active">My Client Bookings</a>
+                <a href="trainer-setup.html">Profile Setup</a>
+                <a href="community.html">Community Network</a>
+                <a href="events.html">Events & Workshops</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="top-bar">
+                <h1>My Appointments</h1>
+                <p style="color: var(--text-secondary);">Manage incoming booking requests from the marketplace.</p>
+            </div>
+            
+            <div class="panel">
+                <h3>Upcoming Sessions</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Client Name</th>
+                            <th>Time Slot</th>
+                            <th>Status</th>
+                            <th>Actions / Meeting Link</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTable">
+                        <tr><td colspan="4" style="text-align:center; color: var(--text-secondary);">Loading bookings...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </main>
+    </div>
+
+    <script src="js/sidebar.js"></script>
+    <script src="js/trainer-bookings.js"></script>
+    <script>
+        if(typeof logout === 'undefined') {
+            window.logout = () => { localStorage.clear(); window.location.href='login.html'; }
+        }
+    </script>
+</body>
+</html>

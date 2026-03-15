@@ -1,0 +1,69 @@
+/* =========================================
+   AUTH PAGES (/login.html, /register.html)
+   ========================================= */
+
+body.auth-page {
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at 50% 10%, rgba(0, 255, 136, 0.1), transparent 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 3rem;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent-gradient);
+}
+
+.auth-container h2 {
+    font-size: 2.2rem;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.form-group input, .form-group select {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 12px;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+.btn-primary.auth-btn {
+    font-family: 'Orbitron', sans-serif;
+    border-radius: 12px;
+    background: var(--accent-gradient);
+    color: #000;
+    letter-spacing: 2px;
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.1);
+}
+
+.btn-primary.auth-btn:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 5px 30px rgba(0, 255, 136, 0.3);
+}
+
+.auth-links a {
+    color: var(--primary-accent);
+}

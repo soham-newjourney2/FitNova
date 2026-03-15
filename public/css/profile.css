@@ -1,0 +1,64 @@
+/* =========================================
+   USER PROFILE PAGE (/user-profile.html)
+   ========================================= */
+
+.profile-header {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 3rem;
+    display: flex;
+    gap: 3rem;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.4);
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border: 3px solid var(--primary-accent);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.profile-info h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.role-badge {
+    font-family: 'Orbitron', sans-serif;
+    background: rgba(0, 255, 136, 0.1) !important;
+    color: var(--primary-accent) !important;
+    border: 1px solid rgba(0, 255, 136, 0.3) !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stats-row strong {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-accent);
+    font-size: 1.5rem;
+}
+
+.panel h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-accent);
+    border-bottom: 2px solid rgba(0, 255, 136, 0.1) !important;
+}
+
+.tag {
+    background: rgba(0, 255, 136, 0.05) !important;
+    border: 1px solid rgba(0, 255, 136, 0.2) !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.modal-content {
+    background: var(--surface-color) !important;
+    border: 1px solid var(--primary-accent) !important;
+    box-shadow: 0 0 50px rgba(0, 255, 136, 0.1) !important;
+}

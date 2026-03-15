@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages | FitNova</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="layout">
+        <!-- Standard V2 Sidebar -->
+        <aside class="sidebar">
+            <div class="nav-links">
+                <!-- Injected via JS -->
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="page-header" style="margin-bottom: 2rem;">
+                <h1>Messages</h1>
+                <p style="color: var(--text-secondary);">Chat with trainers and fitness partners seamlessly.</p>
+            </div>
+
+            <!-- Standard split layout inside main content -->
+            <div class="messaging-main-layout">
+                <!-- Left: Conversations List -->
+                <aside class="chat-rooms-panel glass-card">
+                    <div class="panel-header" style="padding:1.2rem; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center;">
+                        <h3 class="glow-text" style="margin:0;">Conversations</h3>
+                    </div>
+                    
+                    <!-- Tabs for Personal vs Squads if needed, or unified -->
+                    <div class="chat-tabs" style="display:flex; padding:0.8rem; gap:0.5rem;">
+                        <button class="tab-btn active" data-tab="direct">Personal</button>
+                        <button class="tab-btn" data-tab="squads">Squads</button>
+                    </div>
+
+                    <div id="roomsList" class="rooms-list-container">
+                        <!-- Rooms injected via chat.js -->
+                        <div style="padding:1rem; text-align:center; color:var(--text-secondary);">Loading...</div>
+                    </div>
+                </aside>
+
+                <!-- Right: Active Chat Area -->
+                <section id="chatMain" class="chat-view-panel glass-card">
+                    <div id="noChatSelected" class="empty-state" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; color:var(--text-secondary);">
+                        <i class="fas fa-comment-dots" style="font-size:3rem; margin-bottom:1rem; color:var(--primary-accent);"></i>
+                        <h3>Select a conversation</h3>
+                        <p>Engage with your squad or fitness partners</p>
+                    </div>
+                    
+                    <div id="activeChat" class="active-chat-container" style="display:none; height:100%; flex-direction:column;">
+                        <header class="chat-header" style="padding:1.2rem; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; align-items:center; gap:1rem;">
+                            <img src="" id="activeRoomAvatar" style="width:40px;height:40px; border-radius:50%; background:var(--glass-bg); display:none;">
+                            <div class="current-room-info" style="flex:1;">
+                                <h2 id="roomTitle" style="margin:0; font-size:1.2rem; color:#fff;">Select Room</h2>
+                                <span id="roomStatus" style="font-size:0.8rem; color:var(--primary-accent);">Online</span>
+                            </div>
+                        </header>
+
+                        <div id="messagesList" class="messages-scroll-area">
+                            <!-- Messages injected via chat.js -->
+                        </div>
+
+                        <footer class="chat-input-footer" style="padding:1rem;">
+                            <form id="chatForm" style="display:flex; gap:0.8rem;">
+                                <input type="text" id="messageInput" placeholder="Write a message..." class="glass-input" style="flex:1;" autocomplete="off" required>
+                                <button type="submit" class="btn-primary-glow"><i class="fas fa-paper-plane"></i></button>
+                            </form>
+                        </footer>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/sidebar.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>

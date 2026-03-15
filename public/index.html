@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitNova | Your Ultimate Fitness Community</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Build simple rotating 3D slider
+            const slides = document.querySelectorAll('.slide-3d');
+            let current = 0;
+
+            function updateSlider() {
+                slides.forEach((s, i) => {
+                    s.className = 'slide-3d hidden';
+                    if (i === current) s.classList.add('active');
+                    else if (i === (current - 1 + slides.length) % slides.length) s.classList.add('prev');
+                    else if (i === (current + 1) % slides.length) s.classList.add('next');
+                });
+            }
+
+            setInterval(() => {
+                current = (current + 1) % slides.length;
+                updateSlider();
+            }, 3000);
+
+            updateSlider();
+        });
+    </script>
+</head>
+<body class="landing-page">
+    <header class="nav-header">
+        <a href="index.html" class="logo">Fit<span>Nova</span></a>
+        <div>
+            <a href="login.html" style="color: #fff; text-decoration: none; font-weight: 600; margin-right: 1.5rem;">Log In</a>
+            <a href="register.html" class="btn-primary spotify-btn" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">Sign Up</a>
+        </div>
+    </header>
+
+    <div class="hero-section">
+        <div class="hero-content animate-fade-up">
+            <h1 class="hero-title">Elevate Your <span>Fitness Journey.</span></h1>
+            <p class="hero-subtitle">Connect with elite trainers, find workout buddies, and crush your goals through immersive challenges. Welcome to the future of fitness social networking.</p>
+            
+            <div class="cta-buttons">
+                <a href="register.html" class="btn-primary spotify-btn">Join Now for Free</a>
+                <a href="login.html" class="btn-secondary spotify-outline">Explore Features</a>
+            </div>
+        </div>
+        
+        <div class="slider-3d-container animate-fade-up" style="animation-delay: 0.3s;">
+            <div class="slider-3d-track">
+                <!-- Fallback unsplash images for sports vibe -->
+                <div class="slide-3d active" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80');"></div>
+                <div class="slide-3d hidden" style="background-image: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&q=80');"></div>
+                <div class="slide-3d hidden" style="background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80');"></div>
+                <div class="slide-3d hidden" style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&q=80');"></div>
+            </div>
+        </div>
+
+        <div class="ticker-wrapper">
+            <div class="infinite-carousel">
+                <div class="ticker-item">Deadlifts <span>|</span> Marathon Prep <span>|</span> Crossfit <span>|</span> Yoga Flow <span>|</span> HIIT <span>|</span> Local Bootcamps <span>|</span> Calisthenics <span>|</span> </div>
+                <div class="ticker-item">Deadlifts <span>|</span> Marathon Prep <span>|</span> Crossfit <span>|</span> Yoga Flow <span>|</span> HIIT <span>|</span> Local Bootcamps <span>|</span> Calisthenics <span>|</span> </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

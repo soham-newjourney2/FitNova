@@ -1,0 +1,486 @@
+/* =========================================
+   COMMUNITY PAGE (/community.html)
+   Premium Instagram + Spotify Aesthetics
+   ========================================= */
+
+body {
+    background-color: var(--bg-color); /* Inherit dark mode */
+}
+
+/* Header */
+.main-content .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.main-content h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-accent);
+    margin-bottom: 0.2rem;
+    font-size: 2rem;
+    background: linear-gradient(90deg, #fff, var(--primary-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Layout */
+.community-main-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 600px) 350px;
+    gap: 3rem;
+    justify-content: center;
+    padding: 0 1rem 3rem 1rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1000px) {
+    .community-main-layout {
+        grid-template-columns: minmax(0, 600px);
+    }
+    .community-right-panel {
+        display: none !important;
+    }
+}
+
+/* --- FEED: Post Creator --- */
+.feed-container {
+    width: 100%;
+}
+
+.post-creator {
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.creator-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.creator-header .user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid transparent;
+    background: linear-gradient(45deg, var(--primary-accent), #00d2ff) border-box;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 2px; /* Ring effect */
+}
+
+.fake-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 0.9rem 1.5rem;
+    text-align: left;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.fake-input:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.creator-footer {
+    display: flex;
+    gap: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.action-item {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+.action-item:hover {
+    color: var(--primary-accent);
+    background: rgba(0, 255, 136, 0.05);
+}
+
+.action-item i {
+    font-size: 1.1rem;
+}
+
+/* --- FEED: Posts --- */
+.posts-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.post-card {
+    background: #000; /* Deep black for Insta-Spotify vibe */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    overflow: hidden; /* For images */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.08);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 1.2rem;
+}
+
+.post-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid transparent; /* Gradient ring */
+    background: linear-gradient(45deg, var(--primary-accent), #f0f) border-box;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 2px;
+}
+
+.post-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-meta h4 {
+    color: #fff;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.post-category-tag {
+    font-size: 0.7rem;
+    background: rgba(0, 255, 136, 0.15);
+    color: var(--primary-accent);
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: 8px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.post-meta span {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-top: 2px;
+}
+
+/* Post Image Container */
+.post-image-container {
+    width: 100%;
+    max-height: 600px;
+    background-color: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    overflow: hidden;
+}
+
+.post-img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
+}
+
+.post-content {
+    color: #e2e8f0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding: 0.5rem 1.2rem;
+    white-space: pre-wrap;
+    margin: 0.5rem 0;
+}
+
+.post-footer {
+    padding: 0.5rem 1.2rem 1.2rem 1.2rem;
+}
+
+.post-actions-bar {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+.action-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s ease;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.action-btn:hover {
+    transform: scale(1.1);
+    color: var(--text-secondary);
+}
+
+.action-btn.liked {
+    color: #ff3040; /* Insta red heart */
+    animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.likes-count {
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    display: block;
+}
+
+.view-comments-btn {
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+}
+.view-comments-btn:hover {
+    text-decoration: underline;
+}
+
+/* Modals */
+.modal-content {
+    background: rgba(15, 15, 15, 0.95);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    backdrop-filter: blur(20px);
+}
+
+.modal-header h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.image-upload-wrapper {
+    margin: 1rem 0;
+    border: 2px dashed rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.image-upload-wrapper:hover {
+    border-color: var(--primary-accent);
+    background: rgba(0, 255, 136, 0.05);
+}
+
+.image-preview {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 8px;
+    display: none;
+    margin-top: 1rem;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.upload-label {
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+.upload-label i {
+    font-size: 2rem;
+    color: var(--primary-accent);
+}
+
+/* Right Panel (Discover & Squads) */
+.community-right-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.panel-section {
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.panel-section h3 {
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.cat-link {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.cat-link:hover, .cat-link.active {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.cat-link.active {
+    border-left: 3px solid var(--primary-accent);
+}
+
+.squad-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem;
+    background: rgba(0,0,0,0.3);
+    border-radius: 12px;
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.squad-card:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* Comments Modal specific */
+#commentsModal .modal-content {
+    background: #000;
+    max-height: 85vh;
+}
+
+.comment-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.comment-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-body {
+    background: rgba(255,255,255,0.05);
+    padding: 0.8rem 1rem;
+    border-radius: 18px;
+    border-top-left-radius: 4px;
+    color: #fff;
+    font-size: 0.9rem;
+    flex: 1;
+}
+
+.comment-body strong {
+    font-size: 0.85rem;
+    color: var(--primary-accent);
+    margin-bottom: 0.2rem;
+    display: block;
+}
+
+.comment-form {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1rem;
+}
+
+.comment-input-wrapper {
+    display: flex;
+    background: rgba(255,255,255,0.1);
+    border-radius: 30px;
+    padding: 0.3rem 0.5rem;
+}
+
+#commentInput {
+    background: transparent;
+    border: none;
+    flex: 1;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    outline: none;
+}
+
+.post-comment-btn {
+    background: transparent;
+    color: var(--primary-accent);
+    border: none;
+    font-weight: 600;
+    padding: 0 1rem;
+    cursor: pointer;
+}
+.post-comment-btn:hover {
+    color: #fff;
+}

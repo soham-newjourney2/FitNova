@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | FitNova</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="layout">
+        <aside class="sidebar">
+            <h2>FitNova</h2>
+            <div class="nav-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="admin.html" class="active">Admin Panel</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="top-bar">
+                <h1>Admin Control Center</h1>
+                <p style="color: var(--text-secondary);">Manage users, oversee groups, and monitor system metrics.</p>
+            </div>
+            
+            <div id="errorMsg"></div>
+            
+            <div id="adminContent" style="display:none;">
+                <div class="grid-cards">
+                    <div class="card">
+                        <h3>Total Users</h3>
+                        <div class="value" id="statUsers">0</div>
+                    </div>
+                    <div class="card">
+                        <h3>Trainers</h3>
+                        <div class="value" id="statTrainers">0</div>
+                    </div>
+                    <div class="card">
+                        <h3>Events Hosted</h3>
+                        <div class="value" id="statEvents">0</div>
+                    </div>
+                    <div class="card">
+                        <h3>Community Groups</h3>
+                        <div class="value" id="statGroups">0</div>
+                    </div>
+                    <div class="card">
+                        <h3>Workouts Logged</h3>
+                        <div class="value" id="statWorkouts">0</div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3>User Management</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Joined</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTable">
+                            <tr><td colspan="5" style="text-align:center; color: var(--text-secondary);">Loading users...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/sidebar.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        if(typeof logout === 'undefined') {
+            window.logout = () => { localStorage.clear(); window.location.href='login.html'; }
+        }
+    </script>
+</body>
+</html>

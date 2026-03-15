@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitNova Connect</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+    <!-- 1. Server Bar -->
+    <div class="server-bar" id="serverBar">
+        <a href="dashboard.html" title="Dashboard" class="server-icon" style="background: transparent;">
+            <img src="https://ui-avatars.com/api/?name=F&background=4facfe&color=fff" style="width:100%; height:100%; border-radius:50%;" alt="Home">
+        </a>
+        <div class="server-icon active" id="btn-home" onclick="switchDomain('home')" style="background-color: var(--brand); color:#fff;">
+            💬
+        </div>
+        <div class="server-separator"></div>
+        
+        <!-- Squads will inject here -->
+        <div class="server-icon" title="Dawn Patrol Runners" onclick="switchDomain('squad_1')">
+            DP
+        </div>
+        <div class="server-icon" title="Heavy Lifters" onclick="switchDomain('squad_2')">
+            HL
+        </div>
+
+        <div class="server-icon" title="Create Squad" style="color: var(--success); background: rgba(35,165,89, 0.1);">
+            +
+        </div>
+    </div>
+
+    <!-- 2. Channels / DMs Sidebar -->
+    <div class="channel-sidebar" id="channelSidebar">
+        <!-- Rendered based on context -->
+        <div class="sidebar-header" id="sidebarTitle">
+            Direct Messages
+        </div>
+        
+        <div class="channel-list" id="sidebarList">
+            <!-- Example static items for Home -->
+            <div class="channel-item" style="color: var(--text-normal); margin-bottom: 12px;">
+                <span class="channel-icon">👋</span> Friends
+            </div>
+
+            <div class="channel-category">SQUADS CHANNELS</div>
+        </div>
+
+        <div class="user-panel">
+            <div class="dm-avatar" style="width:32px; height:32px;">
+                <img src="https://ui-avatars.com/api/?name=Me&background=random" id="currentUserAvatar" alt="">
+                <div class="status-indicator"></div>
+            </div>
+            <div class="user-panel-info">
+                <div class="up-name" id="currentUserName">Me</div>
+                <div class="up-status">#1234</div>
+            </div>
+            <div style="cursor:pointer; color: var(--text-muted); font-size:1.2rem;">⚙️</div>
+        </div>
+    </div>
+
+    <!-- 3. Main Content Area -->
+    <div class="main-content">
+        <div class="content-header">
+            <div class="content-header-title" id="contentTitle">
+                <span style="color:#8892b0; font-size:1.2rem;">@</span> Alex Runner
+            </div>
+            <div class="content-header-desc" id="contentDesc">Available for an evening run!</div>
+            
+            <div style="margin-left: auto; display: flex; gap: 16px; font-size: 1.2rem; color: var(--text-muted);">
+                <span style="cursor:pointer;" onclick="startVoiceCall()" title="Start Voice Call">📞</span>
+                <span style="cursor:pointer;" title="Start Video Call">📹</span>
+                <span style="cursor:pointer; color:#fff;" onclick="toggleMembers()" title="Toggle Members">👥</span>
+            </div>
+        </div>
+
+        <!-- Snapchat Stories Layer -->
+        <div class="stories-bar" id="storiesBar">
+            <div class="story-item" onclick="alert('Viewing My Story...')">
+                <div class="story-ring" style="background: rgba(255,255,255,0.2);">
+                    <img src="https://ui-avatars.com/api/?name=Me&background=random" alt="">
+                </div>
+                <div class="story-name">Add Story</div>
+            </div>
+
+            <div class="story-item" onclick="alert('Viewing Alexs Gym Snap!')">
+                <div class="story-ring">
+                    <img src="https://via.placeholder.com/60" alt="">
+                </div>
+                <div class="story-name">Alex R.</div>
+            </div>
+            
+            <div class="story-item" onclick="alert('Viewing Sams Deadlift Snap!')">
+                <div class="story-ring">
+                    <img src="https://via.placeholder.com/60" alt="">
+                </div>
+                <div class="story-name">Sam L.</div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+    <!-- 4. Member List Sidebar -->
+
+        <!-- Chat Input -->
+        <div class="chat-input-wrapper" id="chatInputArea">
+            <input type="text" class="chat-input" placeholder="Message @Alex Runner">
+        </div>
+
+        <!-- Jitsi Mount Point for Voice Channels / Calls -->
+        <div id="voice-container"></div>
+    </div>
+
+    <!-- 4. Member List Sidebar -->
+    <div class="members-sidebar" id="membersSidebar">
+        <!-- Renders dynamically. For DMs, maybe just buddy profile details. For Squads, member list. -->
+        <div class="member-category">ONLINE — 1</div>
+        <div class="member-item">
+            <div class="dm-avatar">
+                <img src="https://via.placeholder.com/60" alt="">
+                <div class="status-indicator"></div>
+            </div>
+            <div class="member-name role-admin">Alex Runner</div>
+        </div>
+
+        <div class="member-category">OFFLINE — 1</div>
+        <div class="member-item">
+            <div class="dm-avatar">
+                <img src="https://via.placeholder.com/60" alt="">
+                <div class="status-indicator" style="background:var(--text-muted)"></div>
+            </div>
+            <div class="member-name">Sam Lifter</div>
+        </div>
+    </div>
+
+    <script src="https://meet.jit.si/external_api.js"></script>
+    <script>
+        // Basic frontend logic to mock SPA interactions
+
+        function switchDomain(domainId) {
+            // Un-active all
+            document.querySelectorAll('.server-icon').forEach(el => el.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const sbTitle = document.getElementById('sidebarTitle');
+            const sbList = document.getElementById('sidebarList');
+            const storiesBar = document.getElementById('storiesBar');
+            const msgsCont = document.getElementById('messagesContainer');
+            const discCont = document.getElementById('discoverContainer');
+            
+            if (domainId === 'home') {
+                sbTitle.innerText = "Direct Messages";
+                storiesBar.style.display = 'flex'; // Show stories in DMs
+                msgsCont.style.display = 'flex';
+                discCont.style.display = 'none';
+                document.getElementById('chatInputArea').style.display = 'block';
+
+                sbList.innerHTML = `
+                    <div class="channel-item" style="color: #fff; margin-bottom: 12px; background: var(--active-bg);">
+                        <span class="channel-icon">👋</span> Friends
+                    </div>
+                    <div class="channel-category">MATCHED BUDDIES</div>
+                    <div class="dm-item active" onclick="selectChannel('dm', 'Alex Runner')">
+                        <div class="dm-avatar"><img src="https://via.placeholder.com/60"><div class="status-indicator"></div></div>
+                        <div style="flex:1;">Alex Runner</div>
+                        <div class="streak-indicator">🔥 12</div>
+                    </div>
+                `;
+            } else if (domainId.startsWith('squad')) {
+                sbTitle.innerText = "Dawn Patrol Runners";
+                storiesBar.style.display = 'none'; // Maybe no stories in squads
+                document.getElementById('chatInputArea').style.display = 'block';
+                sbList.innerHTML = `
+                    <div class="channel-category">TEXT CHANNELS</div>
+                    <div class="channel-item active" onclick="selectChannel('text', 'general')">
+                        <span class="channel-icon">#</span> general
+                    </div>
+                    <div class="channel-item" onclick="selectChannel('text', 'training-plans')">
+                        <span class="channel-icon">#</span> training-plans
+                    </div>
+                    
+                    <div class="channel-category">VOICE CHANNELS</div>
+                    <div class="channel-item" onclick="startVoiceCall('Virtual Gym')">
+                        <span class="channel-icon">🔊</span> Virtual Gym
+                    </div>
+                `;
+            }
+        }
+
+        function selectChannel(type, name) {
+            // Mock UI update
+            document.querySelectorAll('.channel-item, .dm-item').forEach(el => el.classList.remove('active'));
+            if(event) event.currentTarget.classList.add('active');
+            
+            const title = document.getElementById('contentTitle');
+            if(type === 'text') {
+                title.innerHTML = `<span style="color:#8892b0; font-size:1.2rem;">#</span> ${name}`;
+                document.querySelector('.chat-input').placeholder = `Message #${name}`;
+            } else {
+                title.innerHTML = `<span style="color:#8892b0; font-size:1.2rem;">@</span> ${name}`;
+                document.querySelector('.chat-input').placeholder = `Message @${name}`;
+            }
+        }
+        
+        function switchDiscoveryCategory(category, element) {
+            if(element) {
+                document.querySelectorAll('.channel-item').forEach(el => el.classList.remove('active'));
+                element.classList.add('active');
+            }
+            
+            if(typeof window.loadDiscoverData === 'function') {
+                window.loadDiscoverData(category);
+            }
+        }
+
+        function toggleMembers() {
+            const sidebar = document.getElementById('membersSidebar');
+            if (sidebar.style.display === 'none' || sidebar.style.width === '0px') {
+                sidebar.style.display = 'flex';
+                sidebar.style.minWidth = '240px';
+                sidebar.style.width = '240px';
+            } else {
+                sidebar.style.display = 'none';
+                sidebar.style.minWidth = '0';
+                sidebar.style.width = '0';
+            }
+        }
+
+        let jitsiApi = null;
+        function startVoiceCall(room = 'PrivateCall') {
+            const voiceContainer = document.getElementById('voice-container');
+            if (voiceContainer.style.display === 'block') {
+                // If clicking again, close it
+                voiceContainer.style.display = 'none';
+                if(jitsiApi) jitsiApi.dispose();
+                return;
+            }
+
+            voiceContainer.style.display = 'block';
+            voiceContainer.innerHTML = '';
+            
+            const domain = 'meet.jit.si';
+            const options = {
+                roomName: `FitNova-${room.replace(/\s/g, '')}-123`,
+                width: '100%',
+                height: '100%',
+                parentNode: voiceContainer,
+                userInfo: { displayName: "FitNova User" },
+                configOverwrite: { 
+                    startWithVideoMuted: true // Start as Voice mainly
+                }
+            };
+            jitsiApi = new JitsiMeetExternalAPI(domain, options);
+        }
+
+        // On load, try filling user details from localStorage
+        const userStr = localStorage.getItem('user');
+        if(userStr) {
+            const u = JSON.parse(userStr);
+            document.getElementById('currentUserName').innerText = u.name;
+        }
+    </script>
+
+    <!-- Load Buddy logic for the Discover tab -->
+    <script src="js/api.js"></script>
+</body>
+</html>

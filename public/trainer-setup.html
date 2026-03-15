@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Setup | FitNova Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/trainer-portal.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="layout">
+        <!-- TRAINER SIDEBAR -->
+        <aside class="sidebar">
+            <h2>FitNova Pro</h2>
+            <div class="nav-links">
+                <a href="trainer-dashboard.html">Trainer Dashboard</a>
+                <a href="trainer-bookings.html">My Client Bookings</a>
+                <a href="trainer-setup.html" class="active">Profile Setup</a>
+                <a href="community.html">Community Network</a>
+                <a href="events.html">Events & Workshops</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="top-bar">
+                <h1>Professional Profile Setting</h1>
+                <p style="color: var(--text-secondary);">Customize how clients discover you on the marketplace.</p>
+            </div>
+            
+            <div id="setupMsg" style="text-align:center; margin-bottom:1rem;"></div>
+
+            <div class="panel">
+                <form id="trainerProfileForm">
+                    <div class="form-group">
+                        <label>Specialties (comma separated)</label>
+                        <input type="text" id="specialties" class="form-input" placeholder="e.g. Weightlifting, Yoga, HIIT" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Certifications (comma separated)</label>
+                        <input type="text" id="certifications" class="form-input" placeholder="e.g. NASM, ACE, CPR" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Save Professional Profile</button>
+                </form>
+            </div>
+            
+        </main>
+    </div>
+
+    <script src="js/sidebar.js"></script>
+    <script src="js/trainer-setup.js"></script>
+    <script>
+        if(typeof logout === 'undefined') {
+            window.logout = () => { localStorage.clear(); window.location.href='login.html'; }
+        }
+    </script>
+</body>
+</html>

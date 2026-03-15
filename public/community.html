@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Network | FitNova</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/community.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="layout">
+        <!-- V2 Standard Sidebar -->
+        <aside class="sidebar">
+            <div class="nav-links">
+                <!-- Injected via sidebar.js -->
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="top-bar">
+                <h1>Community</h1>
+                <p style="color: var(--text-secondary); font-size: 0.95rem;">Share your journey. Get inspired.</p>
+            </div>
+            
+            <div class="community-main-layout">
+                <!-- Center: Main Feed -->
+                <section class="feed-container">
+                    <div class="post-creator">
+                        <div class="creator-header">
+                            <img src="" id="currentUserAvatar" alt="Me" class="user-avatar">
+                            <button id="startPostBtn" class="fake-input">What's your workout win today?</button>
+                        </div>
+                        <div class="creator-footer">
+                            <button class="action-item" onclick="document.getElementById('startPostBtn').click()"><i class="fas fa-camera" style="color:#ff3040"></i> Photo</button>
+                            <button class="action-item" onclick="document.getElementById('startPostBtn').click()"><i class="fas fa-chart-line" style="color:#00d2ff"></i> Stats</button>
+                            <button class="action-item" onclick="document.getElementById('startPostBtn').click()"><i class="fas fa-lightbulb" style="color:#ffd700"></i> Tip</button>
+                        </div>
+                    </div>
+
+                    <div id="postsFeed" class="posts-feed">
+                        <p class="loading-text">Loading feed...</p>
+                    </div>
+                </section>
+
+                <!-- Right Sidebar: Discover & Journeys -->
+                <aside class="community-right-panel">
+                    <div class="panel-section">
+                        <h3>Discover</h3>
+                        <div class="category-links">
+                            <a href="#" class="cat-link active" data-filter="all">🌐 Global Feed</a>
+                            <a href="#" class="cat-link" data-filter="workouts">💪 Workouts</a>
+                            <a href="#" class="cat-link" data-filter="nutrition">🥗 Nutrition</a>
+                            <a href="#" class="cat-link" data-filter="achievements">🏆 Milestones</a>
+                        </div>
+                    </div>
+
+                    <div class="panel-section">
+                        <div class="section-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem;">
+                            <h3 style="margin:0;">Your Squads</h3>
+                            <button title="Create Squad" style="background:transparent; border:none; color:var(--primary-accent); cursor:pointer;"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <div id="squadsList" class="squad-list">
+                            <p class="empty-msg" style="color:var(--text-secondary); font-size:0.9rem;">Join a squad to connect!</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Post Creation -->
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem;">
+                <h2>Create Post</h2>
+                <button class="close-modal" style="background:transparent; border:none; color:#fff; font-size:1.5rem; cursor:pointer;">&times;</button>
+            </div>
+            <form id="createPostForm">
+                <textarea id="postContent" placeholder="Describe your achievement..." style="width:100%; min-height:100px; background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.1); border-radius:12px; color:#fff; padding:1rem; outline:none; resize:none;" required></textarea>
+                
+                <!-- Image Upload Area -->
+                <label class="image-upload-wrapper" for="postImage">
+                    <div class="upload-label" id="uploadLabel">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Click to add a photo</span>
+                    </div>
+                    <img id="imagePreview" class="image-preview" src="" alt="Preview">
+                </label>
+                <input type="file" id="postImage" accept="image/*">
+
+                <div class="form-footer">
+                    <select id="postCategory" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#fff; padding:0.8rem; border-radius:30px; outline:none;">
+                        <option value="general">Standard Post</option>
+                        <option value="workouts">Workout Win</option>
+                        <option value="nutrition">Nutrition Tip</option>
+                        <option value="achievements">Milestone</option>
+                    </select>
+                    <button type="submit" class="btn-primary-glow" id="submitPostBtn" style="padding: 0.8rem 2rem; border-radius: 30px;">Share</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal for Comments -->
+    <div id="commentsModal" class="modal">
+        <div class="modal-content" style="max-height: 85vh; display: flex; flex-direction: column; width: 100%; max-width: 500px;">
+            <div class="modal-header" style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:1rem; margin-bottom:0;">
+                <h2 style="font-size:1.2rem; margin:0;">Comments</h2>
+                <button class="close-comments-modal" style="background:transparent; border:none; color:#fff; font-size:1.5rem; cursor:pointer;">&times;</button>
+            </div>
+            <div id="commentsList" style="flex:1; overflow-y:auto; padding: 1.5rem 0;">
+                <p style="text-align:center; color:var(--text-secondary);">Loading comments...</p>
+            </div>
+            <form id="addCommentForm" class="comment-form">
+                <div class="comment-input-wrapper">
+                    <input type="text" id="commentInput" placeholder="Add a comment..." required autocomplete="off">
+                    <button type="submit" class="post-comment-btn">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/sidebar.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/community.js"></script>
+</body>
+</html>

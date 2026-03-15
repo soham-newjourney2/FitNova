@@ -1,0 +1,67 @@
+/* =========================================
+   ADMIN CONTROL CENTER (/admin.html)
+   ========================================= */
+
+.main-content h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-accent);
+    letter-spacing: 2px;
+}
+
+.card .value {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-accent);
+    text-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+.panel {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-color);
+}
+
+.panel h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+tr {
+    background: rgba(255, 255, 255, 0.02);
+    transition: var(--transition);
+}
+
+tr:hover {
+    background: rgba(0, 255, 136, 0.05);
+    transform: scale(1.01);
+}
+
+th {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-accent);
+    border: none !important;
+}
+
+td {
+    border: none !important;
+    color: #e2e8f0;
+}
+
+.btn-danger {
+    background: rgba(255, 51, 51, 0.1);
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+}
+
+.btn-danger:hover {
+    background: var(--danger-color);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 51, 51, 0.4);
+}

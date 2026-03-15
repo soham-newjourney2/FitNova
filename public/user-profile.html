@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | FitNova</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="layout">
+        <aside class="sidebar">
+            <!-- Sidebar populated by JS -->
+        </aside>
+        
+        <main class="main-content">
+            <div id="profileMsg" style="text-align:center; margin-bottom:1rem;"></div>
+
+            <!-- Profile Header -->
+            <div class="profile-header" id="profileHeader">
+                <div class="avatar-container">
+                    <div class="avatar" id="pAvatar">?</div>
+                </div>
+                <div class="profile-info">
+                    <h1 id="pName">Loading...</h1>
+                    <div class="role-badge" id="pRole">Member</div>
+                    <p id="pBio">No bio provided yet.</p>
+                    
+                    <div class="stats-row">
+                        <div><strong id="pFollowers">0</strong> <span>Followers</span></div>
+                        <div><strong id="pFollowing">0</strong> <span>Following</span></div>
+                    </div>
+                </div>
+                
+                <button class="edit-btn" id="editProfileBtn" style="display:none;">Edit Profile</button>
+                <div style="position:absolute; top: 2rem; right: 2rem; display: flex; gap: 0.5rem;" id="otherUserActions" style="display:none;">
+                    <button class="edit-btn" id="messageBtn" style="display:none;">Message</button>
+                    <button class="connect-btn" id="connectBtn" style="display:none;">Follow</button>
+                </div>
+            </div>
+
+            <div class="panels-grid">
+                <!-- Fitness Interests -->
+                <div class="panel">
+                    <h3>Fitness Interests</h3>
+                    <div class="tags" id="pInterests">
+                        <span class="tag">Not specified</span>
+                    </div>
+                </div>
+
+                <!-- Achievements -->
+                <div class="panel">
+                    <h3>Recent Achievements</h3>
+                    <div id="pAchievements" style="color: var(--text-secondary);">
+                        No achievements listed.
+                    </div>
+                </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <h3>Edit Public Profile</h3>
+            <form id="editProfileForm">
+                <div class="form-group">
+                    <label>Profile Picture</label>
+                    <input type="file" id="editAvatarFile" class="form-input" accept="image/*" style="padding: 0.5rem; background: transparent;">
+                </div>
+                <div class="form-group">
+                    <label>Bio</label>
+                    <textarea id="editBio" class="form-input" placeholder="Tell the community about yourself..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Interests (comma separated)</label>
+                    <input type="text" id="editInterests" class="form-input" placeholder="e.g. Yoga, Powerlifting, Running">
+                </div>
+                <div style="display:flex; gap:1rem; justify-content:flex-end;">
+                    <button type="button" class="edit-btn" style="position:relative; top:0; right:0;" onclick="document.getElementById('editModal').style.display='none'">Cancel</button>
+                    <button type="submit" class="btn-primary" style="margin:0; width:auto; padding:0.5rem 1.5rem;">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/sidebar.js"></script>
+    <script src="js/user-profile.js"></script>
+    <script>
+        if(typeof logout === 'undefined') {
+            window.logout = () => { localStorage.clear(); window.location.href='login.html'; }
+        }
+    </script>
+</body>
+</html>

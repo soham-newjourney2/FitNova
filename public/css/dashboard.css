@@ -1,0 +1,115 @@
+/* =========================================
+   DASHBOARD PAGE (/dashboard.html)
+   ========================================= */
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+.card {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: var(--primary-accent);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 255, 136, 0.05));
+    pointer-events: none;
+}
+
+.card h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-accent);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card .value {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.card .value span {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-left: 0.5rem;
+}
+
+.dashboard-sections {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+@media (max-width: 1200px) {
+    .dashboard-sections {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+    .dashboard-sections {
+        grid-template-columns: 1fr;
+    }
+}
+
+.panel {
+    border-left: 4px solid var(--primary-accent);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.list-item {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+}
+
+.list-item p {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.list-item span {
+    color: var(--text-secondary);
+}
+
+.pill-streak {
+    background: rgba(255, 152, 0, 0.15) !important;
+    color: #ff9800 !important;
+    border: 1px solid rgba(255, 152, 0, 0.3) !important;
+    font-weight: 800 !important;
+}

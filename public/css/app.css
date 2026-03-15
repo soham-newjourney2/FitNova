@@ -1,0 +1,92 @@
+/* =========================================
+   SQUAD APP Skeleton (/app.html)
+   ========================================= */
+
+:root {
+    --bg-server-bar: #050505;
+    --bg-channels: #0a0a0a;
+    --bg-main: #080808;
+    --bg-members: #0a0a0a;
+    
+    --brand: var(--primary-accent);
+    --brand-hover: #00cc66;
+    
+    --hover-bg: rgba(0, 255, 136, 0.05);
+    --active-bg: rgba(0, 255, 136, 0.1);
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-normal);
+}
+
+.server-bar {
+    background-color: var(--bg-server-bar);
+    border-right: 1px solid var(--border-color);
+}
+
+.server-icon {
+    background-color: #111;
+    border: 1px solid rgba(0, 255, 136, 0.1);
+}
+
+.server-icon:hover, .server-icon.active {
+    background-color: var(--primary-accent);
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+}
+
+.channel-sidebar {
+    background-color: var(--bg-channels);
+    border-right: 1px solid var(--border-color);
+}
+
+.sidebar-header {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-accent);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.channel-item.active, .dm-item.active {
+    background-color: var(--active-bg);
+    color: var(--primary-accent);
+    border-right: 2px solid var(--primary-accent);
+}
+
+.story-ring {
+    background: var(--accent-gradient);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+.chat-input {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid rgba(0, 255, 136, 0.2) !important;
+}
+
+.chat-input:focus {
+    border-color: var(--primary-accent) !important;
+}
+
+.content-header-title {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+}
+
+.member-category {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--primary-accent);
+}
+
+.swipe-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-accept {
+    border-color: var(--primary-accent);
+    color: var(--primary-accent);
+}
+
+.btn-reject {
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}

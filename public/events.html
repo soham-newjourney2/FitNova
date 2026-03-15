@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Discover | FitNova</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/events.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+</head>
+<body>
+    <div class="bg-mesh"></div>
+    <div class="layout">
+        <!-- Standard V2 Sidebar -->
+        <aside class="sidebar">
+            <div class="nav-links">
+                <!-- Injected via sidebar.js -->
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="events-hero">
+                <div class="events-hero-content">
+                    <h1>Unleash Your Potential</h1>
+                    <p>Find local workouts, join community bootcamps, or host your own epic fitness journey alongside likeminded enthusiasts.</p>
+                    
+                    <div class="hero-search-container">
+                        <div class="search-icon-wrapper"><i class="fas fa-search"></i></div>
+                        <input type="text" id="eventSearch" placeholder="Search events, bootcamps..." class="hero-search-input">
+                        <div class="search-divider"></div>
+                        <div class="search-icon-wrapper"><i class="fas fa-map-marker-alt"></i></div>
+                        <input type="text" id="eventLocation" placeholder="City or zip..." class="hero-search-input" style="flex:0.7;">
+                        <button id="searchEventsBtn" class="btn-primary-glow" style="margin-right: 5px; padding: 0.8rem 2rem;">Explore</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="eventMsg" style="text-align: center; margin-bottom: 1rem; color: var(--primary-accent);"></div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:2.5rem;">
+                <!-- Filter Tabs -->
+                <div class="filter-tabs" id="filterTabs" style="display:flex; gap:1rem; overflow-x:auto; padding-bottom:5px;">
+                    <button class="filter-tab active" data-filter="all">All Activities</button>
+                    <button class="filter-tab" data-filter="upcoming"><i class="far fa-calendar-alt"></i> Upcoming</button>
+                    <button class="filter-tab" data-filter="foryou"><i class="fas fa-fire"></i> Recommended</button>
+                    <button class="filter-tab" data-filter="hosted"><i class="fas fa-crown"></i> My Hosted</button>
+                    <button class="filter-tab" data-filter="past">Completed</button>
+                </div>
+                
+                <button id="locateMeBtn" class="btn-secondary" title="Sort by Distance" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:30px; padding:0.8rem 1.5rem; transition:all 0.3s ease; cursor:pointer;"><i class="fas fa-location-arrow"></i> Near Me</button>
+            </div>
+
+            <div class="events-main-layout">
+                <!-- Left: Events Grid -->
+                <div class="events-grid-container">
+                    <div class="grid-header">
+                        <h2 id="feedTitle" class="glow-text">Trending Activities</h2>
+                        <button id="createEventBtn" class="btn-primary-glow"><i class="fas fa-plus"></i> Host Event</button>
+                    </div>
+
+                    <div id="eventsList" class="events-premium-grid">
+                        <div class="loading-state" style="text-align:center; padding:3rem; color:var(--text-secondary); grid-column:1/-1;">
+                            <div class="spinner"></div>
+                            <p style="margin-top:1rem; font-family:'Orbitron', sans-serif;">Loading spectacular events...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Map and Notifications -->
+                <aside class="events-side-panel">
+                    <div class="side-card map-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-satellite"></i> Live Coverage</h3>
+                        </div>
+                        <div id="eventMap" class="small-map"></div>
+                    </div>
+
+                    <div class="side-card activity-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-bolt"></i> Activity Stream</h3>
+                        </div>
+                        <div id="notificationsList" class="mini-notifs">
+                            <p class="empty-msg" style="padding:1.5rem; text-align:center; color:var(--text-secondary);">No recent activities.</p>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="createEventFormContainer" class="modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h2>Host Fitness Event</h2>
+                <button class="close-create-event" style="background:transparent; border:none; color:#fff; font-size:1.5rem; cursor:pointer;">&times;</button>
+            </div>
+            <form id="createEventForm">
+                <input type="text" id="evTitle" placeholder="Epic Event Title" class="glass-input" style="width:100%; margin-bottom:1rem;" required>
+                <textarea id="evDesc" placeholder="Describe the workout or bootcamp..." rows="3" class="glass-input" style="width:100%; margin-bottom:1rem;" required></textarea>
+                <div style="display:flex; gap:1rem; margin-bottom:1rem;">
+                    <input type="datetime-local" id="evDate" class="glass-input" style="flex:1;" required>
+                    <input type="number" id="evMax" placeholder="Max Attendees" class="glass-input" style="flex:1;">
+                </div>
+                <input type="text" id="evLocation" placeholder="Specific Location or Maps Link" class="glass-input" style="width:100%; margin-bottom:1.5rem;" required>
+                <button type="submit" class="btn-primary-glow" style="width:100%; padding:1rem;">Publish Event to Network</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="js/events.js"></script>
+</body>
+</html>

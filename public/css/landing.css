@@ -1,0 +1,139 @@
+/* =========================================
+   LANDING PAGE (/index.html)
+   ========================================= */
+
+body.landing-page {
+    background: var(--bg-color);
+    background-image: radial-gradient(circle at 15% 50%, rgba(0, 255, 136, 0.05), transparent 40%),
+                      radial-gradient(circle at 85% 30%, rgba(0, 242, 254, 0.05), transparent 40%);
+    overflow-x: hidden;
+}
+
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 8%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-header .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.nav-header .logo span {
+    color: var(--primary-accent);
+    text-shadow: 0 0 15px var(--glow-color);
+}
+
+.hero-section {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    padding: 0 8%;
+    position: relative;
+    z-index: 10;
+    gap: 4rem;
+}
+
+@media (max-width: 1100px) {
+    .hero-section {
+        grid-template-columns: 1fr;
+        padding-top: 150px;
+        text-align: center;
+    }
+}
+
+.hero-title {
+    font-size: 6rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+    line-height: 1;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.hero-title span {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 136, 0.5));
+}
+
+@media (max-width: 1400px) {
+    .hero-title { font-size: 4.5rem; }
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: var(--text-secondary);
+    margin-bottom: 3.5rem;
+    line-height: 1.8;
+    max-width: 700px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 2rem;
+}
+
+@media (max-width: 1100px) {
+    .cta-buttons { justify-content: center; }
+}
+
+.btn-primary.spotify-btn {
+    font-family: 'Orbitron', sans-serif;
+    background: var(--accent-gradient);
+    color: #000;
+    border-radius: 12px;
+    padding: 1.25rem 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+}
+
+.btn-primary.spotify-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 255, 136, 0.4);
+}
+
+.btn-secondary.spotify-outline {
+    font-family: 'Orbitron', sans-serif;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #fff;
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary.spotify-outline:hover {
+    border-color: var(--primary-accent);
+    background: rgba(0, 255, 136, 0.05);
+}
+
+.ticker-wrapper {
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ticker-item {
+    font-family: 'Orbitron', sans-serif;
+    color: rgba(0, 255, 136, 0.2);
+    -webkit-text-stroke: 1px rgba(0, 255, 136, 0.4);
+}
