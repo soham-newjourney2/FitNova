@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (isOwnProfile) {
         editBtn.addEventListener('click', () => {
-            editModal.style.display = 'flex';
+            editModal.classList.add('open');
             // Pre-fill form
             document.getElementById('editBio').value = pBio.textContent.includes("No bio") ? "" : pBio.textContent;
             
@@ -142,8 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const newLocal = { ...localUser, ...updatedUser };
                     localStorage.setItem('fitnova_user', JSON.stringify(newLocal));
                     
-                    editModal.style.display = 'none';
-                    loadProfile();
+                    editModal.classList.remove('open');
+                    // Force a reload to ensure all components (sidebar, etc) are in sync
+                    window.location.reload();
                 } else {
                     alert('Failed to update profile');
                 }

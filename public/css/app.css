@@ -2,91 +2,89 @@
    SQUAD APP Skeleton (/app.html)
    ========================================= */
 
-:root {
-    --bg-server-bar: #050505;
-    --bg-channels: #0a0a0a;
-    --bg-main: #080808;
-    --bg-members: #0a0a0a;
-    
-    --brand: var(--primary-accent);
-    --brand-hover: #00cc66;
-    
-    --hover-bg: rgba(0, 255, 136, 0.05);
-    --active-bg: rgba(0, 255, 136, 0.1);
-}
+@import url('style.css');
 
-body {
-    background-color: var(--bg-main);
-    color: var(--text-normal);
+:root {
+    --bg-server-bar: var(--white);
+    --bg-channels: var(--bg2);
+    --bg-main: var(--bg1);
+    --bg-members: var(--bg2);
 }
 
 .server-bar {
-    background-color: var(--bg-server-bar);
-    border-right: 1px solid var(--border-color);
+    background: var(--white);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 0;
+    gap: 12px;
 }
 
 .server-icon {
-    background-color: #111;
-    border: 1px solid rgba(0, 255, 136, 0.1);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .server-icon:hover, .server-icon.active {
-    background-color: var(--primary-accent);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
-}
-
-.channel-sidebar {
-    background-color: var(--bg-channels);
-    border-right: 1px solid var(--border-color);
-}
-
-.sidebar-header {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--primary-accent);
-    border-bottom: 1px solid var(--border-color);
-}
-
-.channel-item.active, .dm-item.active {
-    background-color: var(--active-bg);
-    color: var(--primary-accent);
-    border-right: 2px solid var(--primary-accent);
-}
-
-.story-ring {
-    background: var(--accent-gradient);
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
-}
-
-.chat-input {
-    background-color: rgba(0, 0, 0, 0.5) !important;
-    border: 1px solid rgba(0, 255, 136, 0.2) !important;
-}
-
-.chat-input:focus {
-    border-color: var(--primary-accent) !important;
-}
-
-.content-header-title {
-    font-family: 'Orbitron', sans-serif;
+    border-radius: 16px;
+    background: var(--green);
     color: #fff;
 }
 
-.member-category {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--primary-accent);
+.channel-sidebar {
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
 }
 
-.swipe-card {
-    background: var(--surface-color);
-    border: 1px solid var(--border-color);
+.sidebar-header {
+    padding: 24px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--border);
 }
 
-.btn-accept {
-    border-color: var(--primary-accent);
-    color: var(--primary-accent);
+.channel-item, .dm-item {
+    padding: 8px 16px;
+    margin: 2px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.btn-reject {
-    border-color: var(--danger-color);
-    color: var(--danger-color);
+.channel-item:hover, .dm-item:hover, .channel-item.active, .dm-item.active {
+    background: var(--border);
+}
+
+.user-panel {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.content-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.chat-input-wrapper {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    padding: 24px;
 }

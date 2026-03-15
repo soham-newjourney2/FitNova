@@ -3,87 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events & Discover | FitNova</title>
+    <title>Events | FitNova</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/events.css">
-    <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 </head>
 <body>
-    <div class="bg-mesh"></div>
+    
+    <!-- Ambient background orbs -->
+    <div class="bg-mesh">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+
     <div class="layout">
-        <!-- Standard V2 Sidebar -->
-        <aside class="sidebar">
-            <div class="nav-links">
-                <!-- Injected via sidebar.js -->
-            </div>
+        <aside class="sidebar-new">
+            <!-- Injected via sidebar.js -->
         </aside>
         
         <main class="main-content">
-            <div class="events-hero">
-                <div class="events-hero-content">
-                    <h1>Unleash Your Potential</h1>
-                    <p>Find local workouts, join community bootcamps, or host your own epic fitness journey alongside likeminded enthusiasts.</p>
-                    
-                    <div class="hero-search-container">
-                        <div class="search-icon-wrapper"><i class="fas fa-search"></i></div>
-                        <input type="text" id="eventSearch" placeholder="Search events, bootcamps..." class="hero-search-input">
-                        <div class="search-divider"></div>
-                        <div class="search-icon-wrapper"><i class="fas fa-map-marker-alt"></i></div>
-                        <input type="text" id="eventLocation" placeholder="City or zip..." class="hero-search-input" style="flex:0.7;">
-                        <button id="searchEventsBtn" class="btn-primary-glow" style="margin-right: 5px; padding: 0.8rem 2rem;">Explore</button>
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h1>Explore Events</h1>
+                    <p class="muted-text">Find workshops, bootcamps and local meetups.</p>
+                </div>
+            </header>
+
+            <div class="events-hero panel" style="margin-bottom: 32px; padding: 40px; text-align: center;">
+                <h2 style="font-size: 2.5rem; margin-bottom: 12px; letter-spacing: -0.02em;">Unleash Your Potential</h2>
+                <p style="color: var(--muted); max-width: 600px; margin: 0 auto 32px auto;">Find local workouts, join community bootcamps, or host your own epic fitness journey.</p>
+                
+                <div class="panel hero-search-container" style="max-width: 800px; margin: 0 auto; display: flex; align-items: center; gap: 12px; padding: 8px 12px; border-radius: var(--r-pill);">
+                    <div style="flex: 1; display: flex; align-items: center; gap: 10px; padding-left: 12px;">
+                        <i class="fas fa-search" style="color: var(--muted);"></i>
+                        <input type="text" id="eventSearch" placeholder="Search events..." style="border:none; background:transparent; padding:10px 0;">
                     </div>
+                    <div style="width: 1px; height: 24px; background: var(--border);"></div>
+                    <div style="flex: 0.7; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-map-marker-alt" style="color: var(--muted);"></i>
+                        <input type="text" id="eventLocation" placeholder="Location..." style="border:none; background:transparent; padding:10px 0;">
+                    </div>
+                    <button id="searchEventsBtn" class="btn-green" style="padding: 10px 24px;">Explore</button>
                 </div>
             </div>
             
-            <div id="eventMsg" style="text-align: center; margin-bottom: 1rem; color: var(--primary-accent);"></div>
+            <div id="eventMsg" style="text-align: center; margin-bottom: 24px; color: var(--green-d); font-weight: 600;"></div>
 
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:2.5rem;">
-                <!-- Filter Tabs -->
-                <div class="filter-tabs" id="filterTabs" style="display:flex; gap:1rem; overflow-x:auto; padding-bottom:5px;">
-                    <button class="filter-tab active" data-filter="all">All Activities</button>
-                    <button class="filter-tab" data-filter="upcoming"><i class="far fa-calendar-alt"></i> Upcoming</button>
-                    <button class="filter-tab" data-filter="foryou"><i class="fas fa-fire"></i> Recommended</button>
-                    <button class="filter-tab" data-filter="hosted"><i class="fas fa-crown"></i> My Hosted</button>
-                    <button class="filter-tab" data-filter="past">Completed</button>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-bottom:32px;">
+                <div class="filter-tabs" id="filterTabs" style="display:flex; gap:12px;">
+                    <button class="btn-ghost filter-tab active" data-filter="all">All</button>
+                    <button class="btn-ghost filter-tab" data-filter="upcoming">Upcoming</button>
+                    <button class="btn-ghost filter-tab" data-filter="foryou">Recommended</button>
                 </div>
                 
-                <button id="locateMeBtn" class="btn-secondary" title="Sort by Distance" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:30px; padding:0.8rem 1.5rem; transition:all 0.3s ease; cursor:pointer;"><i class="fas fa-location-arrow"></i> Near Me</button>
+                <button id="locateMeBtn" class="btn-ghost"><i class="fas fa-location-arrow"></i> Near Me</button>
             </div>
 
             <div class="events-main-layout">
-                <!-- Left: Events Grid -->
                 <div class="events-grid-container">
-                    <div class="grid-header">
-                        <h2 id="feedTitle" class="glow-text">Trending Activities</h2>
-                        <button id="createEventBtn" class="btn-primary-glow"><i class="fas fa-plus"></i> Host Event</button>
+                    <div class="grid-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+                        <h3>Trending Activities</h3>
+                        <button id="createEventBtn" class="btn-green"><i class="fas fa-plus"></i> Host Event</button>
                     </div>
 
                     <div id="eventsList" class="events-premium-grid">
-                        <div class="loading-state" style="text-align:center; padding:3rem; color:var(--text-secondary); grid-column:1/-1;">
-                            <div class="spinner"></div>
-                            <p style="margin-top:1rem; font-family:'Orbitron', sans-serif;">Loading spectacular events...</p>
-                        </div>
+                        <p class="loading-text">Loading spectacular events...</p>
                     </div>
                 </div>
 
-                <!-- Right: Map and Notifications -->
                 <aside class="events-side-panel">
-                    <div class="side-card map-card">
-                        <div class="card-header">
-                            <h3><i class="fas fa-satellite"></i> Live Coverage</h3>
-                        </div>
-                        <div id="eventMap" class="small-map"></div>
+                    <div class="panel side-card map-card" style="margin-bottom: 20px;">
+                        <h3>Live Coverage</h3>
+                        <div id="eventMap" style="height: 200px; border-radius: 12px; margin-top: 16px; border: 1px solid var(--border);"></div>
                     </div>
 
-                    <div class="side-card activity-card">
-                        <div class="card-header">
-                            <h3><i class="fas fa-bolt"></i> Activity Stream</h3>
-                        </div>
-                        <div id="notificationsList" class="mini-notifs">
-                            <p class="empty-msg" style="padding:1.5rem; text-align:center; color:var(--text-secondary);">No recent activities.</p>
+                    <div class="panel side-card activity-card">
+                        <h3>Activity Stream</h3>
+                        <div id="notificationsList" class="mini-notifs" style="margin-top: 16px;">
+                            <p class="empty-msg">No recent activities.</p>
                         </div>
                     </div>
                 </aside>
@@ -91,22 +93,37 @@
         </main>
     </div>
 
-    <!-- Modals -->
+    <!-- Host Event Modal -->
     <div id="createEventFormContainer" class="modal">
-        <div class="modal-content glass-card">
-            <div class="modal-header">
-                <h2>Host Fitness Event</h2>
-                <button class="close-create-event" style="background:transparent; border:none; color:#fff; font-size:1.5rem; cursor:pointer;">&times;</button>
+        <div class="panel modal-content" style="max-width: 500px; margin: 50px auto;">
+            <div class="modal-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 24px;">
+                <h2>Host Event</h2>
+                <button class="close-create-event btn-ghost" style="padding: 4px 10px;">&times;</button>
             </div>
             <form id="createEventForm">
-                <input type="text" id="evTitle" placeholder="Epic Event Title" class="glass-input" style="width:100%; margin-bottom:1rem;" required>
-                <textarea id="evDesc" placeholder="Describe the workout or bootcamp..." rows="3" class="glass-input" style="width:100%; margin-bottom:1rem;" required></textarea>
-                <div style="display:flex; gap:1rem; margin-bottom:1rem;">
-                    <input type="datetime-local" id="evDate" class="glass-input" style="flex:1;" required>
-                    <input type="number" id="evMax" placeholder="Max Attendees" class="glass-input" style="flex:1;">
+                <div class="form-group">
+                    <label>Event Title</label>
+                    <input type="text" id="evTitle" placeholder="e.g. Morning Yoga Flow" required>
                 </div>
-                <input type="text" id="evLocation" placeholder="Specific Location or Maps Link" class="glass-input" style="width:100%; margin-bottom:1.5rem;" required>
-                <button type="submit" class="btn-primary-glow" style="width:100%; padding:1rem;">Publish Event to Network</button>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="evDesc" placeholder="Workout details..." rows="3" style="resize:none;" required></textarea>
+                </div>
+                <div style="display:flex; gap:16px;">
+                    <div class="form-group" style="flex:1;">
+                        <label>Date & Time</label>
+                        <input type="datetime-local" id="evDate" required>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label>Max Attendees</label>
+                        <input type="number" id="evMax" placeholder="20">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <input type="text" id="evLocation" placeholder="Park, Gym, or Online link" required>
+                </div>
+                <button type="submit" class="btn-green" style="width:100%; justify-content:center; padding:14px;">Publish Event</button>
             </form>
         </div>
     </div>

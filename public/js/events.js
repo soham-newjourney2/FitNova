@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (openCreateBtn) {
         if (localUser.role === 'trainer' || localUser.role === 'admin') {
             openCreateBtn.style.display = 'inline-flex';
-            openCreateBtn.onclick = () => createModal.style.display = 'flex';
+            openCreateBtn.onclick = () => createModal.classList.add('open');
         } else {
             openCreateBtn.style.display = 'none';
             // Also hide the "My Hosted" filter tab for regular users
@@ -42,10 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.querySelectorAll('.close-create-event').forEach(btn => {
-        btn.onclick = () => btn.closest('.modal').style.display = 'none';
+        btn.onclick = () => btn.closest('.modal').classList.remove('open');
     });
     
-    window.onclick = (e) => { if (e.target.classList.contains('modal')) e.target.style.display = 'none'; };
+    window.onclick = (e) => { if (e.target.classList.contains('modal')) e.target.classList.remove('open'); };
 
     // Geolocation / Distance Sorting
     const locateMeBtn = document.getElementById('locateMeBtn');
@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 await apiCall('/api/events', 'POST', payload);
-                createModal.style.display = 'none';
+                createModal.classList.remove('open');
                 createEventForm.reset();
                 loadEvents();
             } catch (err) { alert(err.message); }
@@ -337,9 +337,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             notifList.innerHTML = notifs.map(n => `
-                <div style="padding:0.8rem; border-bottom:1px solid rgba(255,255,255,0.05);">
-                    <div style="font-size:0.75rem; color:var(--primary-accent); margin-bottom:4px;">${new Date(n.createdAt).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
-                    <div style="font-size:0.9rem; color:#fff;">${n.content}</div>
+                <div class="notif-item">
+                    <div class="notif-time">${new Date(n.createdAt).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>
+                    <div class="notif-content">${n.content}</div>
                 </div>
             `).join('');
         } catch (e) { console.error(e); }

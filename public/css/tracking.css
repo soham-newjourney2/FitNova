@@ -2,61 +2,54 @@
    FITNESS TRACKING PAGE (/tracking.html)
    ========================================= */
 
+@import url('style.css');
+
 .tracking-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
+    gap: 24px;
+}
+
+.history-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.history-item:hover {
+    border-color: var(--green);
+    background: var(--white);
+    transform: translateX(4px);
+}
+
+.history-item-info h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.history-item-info p {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.metric-badge {
+    background: var(--green-l);
+    color: var(--green-d);
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: var(--r-pill);
+    font-size: 0.85rem;
 }
 
 @media (max-width: 900px) {
     .tracking-grid {
         grid-template-columns: 1fr;
     }
-}
-
-.history-item {
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid var(--border-color);
-    padding: 1.5rem;
-    border-radius: 12px;
-    margin-bottom: 1.25rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: var(--transition);
-}
-
-.history-item:hover {
-    transform: translateX(10px);
-    border-color: var(--primary-accent);
-    background: rgba(0, 255, 136, 0.05);
-}
-
-.history-item h4 {
-    font-family: 'Orbitron', sans-serif;
-    color: #fff;
-    font-size: 1rem;
-    margin-bottom: 0.4rem;
-}
-
-.metric-badge {
-    font-family: 'Orbitron', sans-serif;
-    background: rgba(0, 255, 136, 0.1);
-    color: var(--primary-accent);
-    border: 1px solid rgba(0, 255, 136, 0.3);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-weight: 700;
-}
-
-.form-input {
-    background: rgba(0, 0, 0, 0.5) !important;
-    border: 1px solid rgba(0, 255, 136, 0.1) !important;
-    color: #fff !important;
-    border-radius: 10px !important;
-}
-
-.form-input:focus {
-    border-color: var(--primary-accent) !important;
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.1) !important;
 }

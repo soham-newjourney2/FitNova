@@ -4,72 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messages | FitNova</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/chat.css">
-    <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="bg-mesh"></div>
+    <!-- Ambient background orbs -->
+    <div class="bg-mesh">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+
     <div class="layout">
-        <!-- Standard V2 Sidebar -->
-        <aside class="sidebar">
-            <div class="nav-links">
-                <!-- Injected via JS -->
-            </div>
+        <aside class="sidebar-new">
+            <!-- Injected via sidebar.js -->
         </aside>
         
         <main class="main-content">
-            <div class="page-header" style="margin-bottom: 2rem;">
-                <h1>Messages</h1>
-                <p style="color: var(--text-secondary);">Chat with trainers and fitness partners seamlessly.</p>
-            </div>
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h1>Messages</h1>
+                    <p class="muted-text">Chat with trainers and fitness partners.</p>
+                </div>
+            </header>
 
-            <!-- Standard split layout inside main content -->
-            <div class="messaging-main-layout">
+            <div class="messaging-main-layout" style="display: grid; grid-template-columns: 320px 1fr; gap: 24px; height: calc(100vh - 160px);">
                 <!-- Left: Conversations List -->
-                <aside class="chat-rooms-panel glass-card">
-                    <div class="panel-header" style="padding:1.2rem; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center;">
-                        <h3 class="glow-text" style="margin:0;">Conversations</h3>
+                <aside class="panel chat-rooms-panel" style="display: flex; flex-direction: column; overflow: hidden; padding: 0;">
+                    <div class="panel-header" style="padding: 24px; border-bottom: 1px solid var(--border);">
+                        <h3 style="margin:0; font-size: 1.1rem;">Conversations</h3>
                     </div>
                     
-                    <!-- Tabs for Personal vs Squads if needed, or unified -->
-                    <div class="chat-tabs" style="display:flex; padding:0.8rem; gap:0.5rem;">
-                        <button class="tab-btn active" data-tab="direct">Personal</button>
-                        <button class="tab-btn" data-tab="squads">Squads</button>
+                    <div class="chat-tabs" style="display:flex; padding:16px; gap:8px;">
+                        <button class="btn-ghost tab-btn active" data-tab="direct" style="flex:1;">Personal</button>
+                        <button class="btn-ghost tab-btn" data-tab="squads" style="flex:1;">Squads</button>
                     </div>
 
-                    <div id="roomsList" class="rooms-list-container">
-                        <!-- Rooms injected via chat.js -->
-                        <div style="padding:1rem; text-align:center; color:var(--text-secondary);">Loading...</div>
+                    <div id="roomsList" style="flex: 1; overflow-y: auto;">
+                        <div style="padding:24px; text-align:center;"><p class="loading-text">Loading...</p></div>
                     </div>
                 </aside>
 
                 <!-- Right: Active Chat Area -->
-                <section id="chatMain" class="chat-view-panel glass-card">
-                    <div id="noChatSelected" class="empty-state" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; color:var(--text-secondary);">
-                        <i class="fas fa-comment-dots" style="font-size:3rem; margin-bottom:1rem; color:var(--primary-accent);"></i>
-                        <h3>Select a conversation</h3>
-                        <p>Engage with your squad or fitness partners</p>
+                <section id="chatMain" class="panel chat-view-panel" style="display: flex; flex-direction: column; overflow: hidden; padding: 0;">
+                    <div id="noChatSelected" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); text-align: center; padding: 40px;">
+                        <i class="fas fa-comment-dots" style="font-size: 3rem; margin-bottom: 20px; color: var(--green);"></i>
+                        <h3>Your Workspace</h3>
+                        <p>Select a conversation to start chatting with your squad or trainers.</p>
                     </div>
                     
-                    <div id="activeChat" class="active-chat-container" style="display:none; height:100%; flex-direction:column;">
-                        <header class="chat-header" style="padding:1.2rem; border-bottom:1px solid rgba(255,255,255,0.05); display:flex; align-items:center; gap:1rem;">
-                            <img src="" id="activeRoomAvatar" style="width:40px;height:40px; border-radius:50%; background:var(--glass-bg); display:none;">
-                            <div class="current-room-info" style="flex:1;">
-                                <h2 id="roomTitle" style="margin:0; font-size:1.2rem; color:#fff;">Select Room</h2>
-                                <span id="roomStatus" style="font-size:0.8rem; color:var(--primary-accent);">Online</span>
+                    <div id="activeChat" style="display:none; height:100%; flex-direction:column;">
+                        <header style="padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px;">
+                            <img src="" id="activeRoomAvatar" style="width:40px; height:40px; border-radius:50%; background:var(--bg2); display:none;">
+                            <div>
+                                <h3 id="roomTitle" style="margin:0; font-size: 1.1rem;">Select Room</h3>
+                                <span id="roomStatus" style="font-size: 0.8rem; color: var(--green-d); font-weight: 600;">Online</span>
                             </div>
                         </header>
 
-                        <div id="messagesList" class="messages-scroll-area">
+                        <div id="messagesList" style="flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 16px;">
                             <!-- Messages injected via chat.js -->
                         </div>
 
-                        <footer class="chat-input-footer" style="padding:1rem;">
-                            <form id="chatForm" style="display:flex; gap:0.8rem;">
-                                <input type="text" id="messageInput" placeholder="Write a message..." class="glass-input" style="flex:1;" autocomplete="off" required>
-                                <button type="submit" class="btn-primary-glow"><i class="fas fa-paper-plane"></i></button>
+                        <footer style="padding: 20px 24px; border-top: 1px solid var(--border);">
+                            <form id="chatForm" style="display:flex; gap:12px;">
+                                <input type="text" id="messageInput" placeholder="Write a message..." autocomplete="off" required style="flex:1;">
+                                <button type="submit" class="btn-green" style="padding: 0 24px;"><i class="fas fa-paper-plane"></i></button>
                             </form>
                         </footer>
                     </div>
@@ -80,5 +84,10 @@
 
     <script src="js/sidebar.js"></script>
     <script src="js/chat.js"></script>
+    <script>
+        if(typeof logout === 'undefined') {
+            window.logout = () => { localStorage.clear(); window.location.href='login.html'; }
+        }
+    </script>
 </body>
 </html>

@@ -3,39 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Tracking | FitNova</title>
+    <title>Workout Tracking | FitNova</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/tracking.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="bg-mesh"></div>
+    <!-- Ambient background orbs -->
+    <div class="bg-mesh">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+
     <div class="layout">
-        <aside class="sidebar">
-            <h2>FitNova</h2>
-            <div class="nav-links">
-                <a href="dashboard.html">Dashboard</a>
-                <a href="tracking.html" class="active">Fitness Tracking</a>
-                <a href="community.html">Community Network</a>
-                <a href="trainers.html">Trainer Marketplace</a>
-                <a href="events.html">Events</a>
-                <a href="#" onclick="logout()">Logout</a>
-            </div>
+        <aside class="sidebar-new">
+            <!-- Injected via sidebar.js -->
         </aside>
         
         <main class="main-content">
-            <div class="top-bar">
-                <h1 style="margin-bottom: 2rem;">Fitness Tracking</h1>
-            </div>
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h1>Workout Tracking</h1>
+                    <p class="muted-text">Log your activities and see your progress.</p>
+                </div>
+            </header>
 
-            <div class="tracking-grid">
+            <div class="tracking-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
                 <!-- Log Form -->
                 <div class="panel">
-                    <h3>Log New Workout</h3>
+                    <h3 style="margin-bottom: 24px;">Log New Workout</h3>
                     <form id="logWorkoutForm">
                         <div class="form-group">
-                            <label for="exerciseType">Exercise Type</label>
-                            <select id="exerciseType" class="form-input" required>
+                            <label>Exercise Type</label>
+                            <select id="exerciseType" required>
                                 <option value="Cardio">Cardio / Running</option>
                                 <option value="Strength Training">Strength Training</option>
                                 <option value="HIIT">HIIT</option>
@@ -44,51 +48,52 @@
                                 <option value="Other">Other</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="duration">Duration (minutes)</label>
-                            <input type="number" id="duration" class="form-input" required placeholder="e.g. 45">
+                        <div style="display:flex; gap:16px;">
+                            <div class="form-group" style="flex:1;">
+                                <label>Duration (min)</label>
+                                <input type="number" id="duration" required placeholder="45">
+                            </div>
+                            <div class="form-group" style="flex:1;">
+                                <label>Calories</label>
+                                <input type="number" id="caloriesBurned" required placeholder="300">
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="caloriesBurned">Calories Burned</label>
-                            <input type="number" id="caloriesBurned" class="form-input" required placeholder="e.g. 300">
+                            <label>Notes (Optional)</label>
+                            <input type="text" id="notes" placeholder="How was it?">
                         </div>
-                        <div class="form-group">
-                            <label for="notes">Notes (Optional)</label>
-                            <input type="text" id="notes" class="form-input" placeholder="How did it feel?">
-                        </div>
-                        <button type="submit" class="btn-primary">Save Workout</button>
+                        <button type="submit" class="btn-green" style="width:100%; justify-content:center; padding:14px;">Save Workout</button>
                         <div id="logMessage" style="margin-top:1rem; text-align:center;"></div>
                     </form>
                 </div>
                 
                 <!-- History -->
                 <div class="panel">
-                    <h3>Recent History</h3>
+                    <h3 style="margin-bottom: 24px;">Recent History</h3>
                     <div id="historyList">
-                        <p style="color: var(--text-secondary);">Loading history...</p>
+                        <p class="loading-text">Loading history...</p>
                     </div>
                 </div>
 
-                <!-- V3: Gamification -->
-                <div class="panel" style="grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; background: transparent; border: none; padding: 0;">
+                <!-- Gamification Section -->
+                <div class="panel" style="grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; background:transparent; border:none; padding:0; box-shadow:none;">
                     
-                    <div class="panel" style="margin: 0;">
-                        <h3>📍 Gym Check-In</h3>
-                        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Check in to local gyms to earn the "Mayor" title.</p>
-                        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-                            <input type="text" id="gymLocationInput" class="form-input" placeholder="e.g. Gold's Gym Downtown" style="flex:1;">
-                            <button id="checkInBtn" class="btn-primary" style="margin:0; width:auto;">Check In</button>
+                    <div class="panel" style="margin:0;">
+                        <h3 style="margin-bottom:12px;">📍 Gym Check-In</h3>
+                        <p class="muted-text" style="margin-bottom:20px;">Check in to local gyms to earn titles.</p>
+                        <div style="display: flex; gap: 12px;">
+                            <input type="text" id="gymLocationInput" placeholder="Gym name..." style="flex:1;">
+                            <button id="checkInBtn" class="btn-green">Check In</button>
                         </div>
-                        <div id="checkInMsg" style="text-align: center;"></div>
+                        <div id="checkInMsg" style="margin-top:12px;"></div>
                     </div>
 
-                    <div class="panel" style="margin: 0;">
-                        <h3>🏆 Active Challenges</h3>
-                        <div id="challengesList">
-                            <p style="color: var(--text-secondary);">Loading challenges...</p>
+                    <div class="panel" style="margin:0;">
+                        <h3 style="margin-bottom:12px;">🏆 Active Challenges</h3>
+                        <div id="challengesList" style="margin-top: 12px;">
+                            <p class="loading-text">Loading challenges...</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </main>

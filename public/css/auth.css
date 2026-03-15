@@ -1,69 +1,191 @@
-/* =========================================
-   AUTH PAGES (/login.html, /register.html)
-   ========================================= */
+/* /* ═══════════════════════════════════════════════════════════
+   FitNova — css/auth.css
+   Login · Register · Onboarding
+   Dramatic split-screen with bold imagery & liquid glass form
+═══════════════════════════════════════════════════════════ */
 
-body.auth-page {
-    background-color: var(--bg-color);
-    background-image: radial-gradient(circle at 50% 10%, rgba(0, 255, 136, 0.1), transparent 50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+/* ─── PAGE SHELL ─────────────────────────────────────────── */
+body.auth-page, body:has(.auth-container) {
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  overflow: hidden;
 }
 
+/* ─── SPLIT LAYOUT ───────────────────────────────────────── */
+body.auth-page { flex-direction: row; }
+body.auth-page .bg-mesh { position: fixed; }
+
+/* The form side */
 .auth-container {
-    width: 100%;
-    max-width: 450px;
-    padding: 3rem;
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius);
-    box-shadow: 0 0 40px rgba(0, 255, 136, 0.05);
-    position: relative;
-    overflow: hidden;
+  position: relative; z-index: 2;
+  width: 100%; max-width: 480px;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: stretch;
+  padding: 52px 48px;
+  background: rgba(255,255,255,0.78);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  border-right: 1px solid var(--glass-border);
+  box-shadow: 6px 0 48px rgba(0,0,0,0.09);
+  animation: slideInLeft 0.7s cubic-bezier(0.23,1,0.32,1) both;
 }
 
+/* Hero image panel (right side — CSS only) */
+body.auth-page::after {
+  content: '';
+  flex: 1;
+  background:
+    linear-gradient(160deg, rgba(62,207,90,0.55) 0%, rgba(79,172,254,0.40) 100%),
+    url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=1200&q=85') center/cover no-repeat;
+  position: relative;
+  animation: fadeIn 0.9s 0.2s both;
+}
+body.auth-page::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+}
+
+/* ─── LOGO / BRAND ───────────────────────────────────────── */
 .auth-container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--accent-gradient);
+  content: 'FitNova';
+  display: block;
+  font-family: 'Syne', sans-serif;
+  font-size: 1.45rem; font-weight: 800;
+  letter-spacing: -0.025em; color: var(--text);
+  margin-bottom: 40px;
 }
 
+/* ─── HEADING ────────────────────────────────────────────── */
 .auth-container h2 {
-    font-size: 2.2rem;
-    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 800; letter-spacing: -0.03em;
+  color: var(--text); line-height: 1.08;
+  margin-bottom: 8px;
+  animation: fadeUp 0.6s 0.15s both;
+}
+.auth-container > p {
+  font-size: 0.96rem; color: var(--text-muted);
+  margin-bottom: 32px; line-height: 1.6;
+  animation: fadeUp 0.6s 0.25s both;
 }
 
-.form-group input, .form-group select {
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(0, 255, 136, 0.2);
-    border-radius: 12px;
+/* ─── FORM ───────────────────────────────────────────────── */
+.auth-container form { animation: fadeUp 0.6s 0.3s both; }
+
+.auth-container .form-group { margin-bottom: 18px; }
+.auth-container .form-group label {
+  display: block; font-size: 0.82rem; font-weight: 600;
+  color: var(--text-secondary); margin-bottom: 7px;
+  letter-spacing: 0.01em;
+}
+.auth-container input,
+.auth-container select {
+  background: rgba(255,255,255,0.65);
+  border: 1.5px solid var(--border2);
+  border-radius: var(--r-md);
+  color: var(--text); font-family: 'Epilogue', sans-serif;
+  font-size: 0.92rem; padding: 12px 16px;
+  width: 100%; outline: none;
+  transition: all 0.22s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: var(--sh-xs);
+}
+.auth-container input:focus,
+.auth-container select:focus {
+  border-color: var(--green);
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 0 0 3px var(--green-l), var(--sh-xs);
+}
+.auth-container input:hover:not(:focus),
+.auth-container select:hover:not(:focus) {
+  border-color: rgba(0,0,0,0.22);
+}
+.auth-container select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a8f78' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 38px;
+}
+.auth-container input::placeholder { color: var(--text-muted); }
+
+/* ─── AUTH BUTTON ────────────────────────────────────────── */
+.auth-btn, .auth-container .btn-primary {
+  width: 100%; justify-content: center;
+  padding: 14px 24px !important;
+  font-size: 1rem !important; font-weight: 700 !important;
+  border-radius: var(--r-pill) !important;
+  margin-top: 8px;
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 28px rgba(62,207,90,0.38) !important;
+  transition: all 0.3s cubic-bezier(0.23,1,0.32,1) !important;
+}
+.auth-btn:hover, .auth-container .btn-primary:hover {
+  transform: translateY(-3px) scale(1.01) !important;
+  box-shadow: 0 10px 36px rgba(62,207,90,0.48) !important;
+}
+.auth-btn:active { transform: scale(0.97) !important; }
+
+/* ─── AUTH MESSAGE ───────────────────────────────────────── */
+#authMessage {
+  margin-top: 14px;
+  font-size: 0.86rem; text-align: center;
+  min-height: 22px; border-radius: var(--r-sm);
+  padding: 6px 12px;
+  animation: fadeIn 0.3s both;
+}
+#authMessage:not(:empty) {
+  background: rgba(62,207,90,0.08);
+  border: 1px solid rgba(62,207,90,0.2);
+  color: var(--green-d);
 }
 
-.form-group input:focus, .form-group select:focus {
-    border-color: var(--primary-accent);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+/* ─── AUTH LINKS ─────────────────────────────────────────── */
+.auth-links {
+  margin-top: 24px; text-align: center;
+  font-size: 0.86rem; color: var(--text-muted);
+  animation: fadeUp 0.6s 0.5s both;
 }
-
-.btn-primary.auth-btn {
-    font-family: 'Orbitron', sans-serif;
-    border-radius: 12px;
-    background: var(--accent-gradient);
-    color: #000;
-    letter-spacing: 2px;
-    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.1);
-}
-
-.btn-primary.auth-btn:hover {
-    background: var(--accent-hover);
-    box-shadow: 0 5px 30px rgba(0, 255, 136, 0.3);
-}
-
 .auth-links a {
-    color: var(--primary-accent);
+  color: var(--green-d); font-weight: 700;
+  text-decoration: none; transition: color 0.2s;
+}
+.auth-links a:hover { color: var(--green); }
+
+/* ─── ONBOARDING SPECIFICS ───────────────────────────────── */
+body:not(.auth-page) .auth-container {
+  max-width: 560px; min-height: auto;
+  margin: 40px auto; border-radius: var(--r-xl);
+  min-height: 100vh;
+  box-shadow: var(--sh-lg); border: 1px solid var(--glass-border);
+}
+body:not(.auth-page) .auth-container::before { display: none; }
+body:not(.auth-page) { display: flex; align-items: center; justify-content: center; padding: 24px; }
+
+/* ─── DECORATIVE FLOATERS (right panel) ─────────────────── */
+body.auth-page .bg-mesh::before {
+  right: calc(50% - 300px);
+  top: -80px;
+  opacity: 0.6;
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media (max-width: 760px) {
+  body.auth-page { flex-direction: column; overflow-y: auto; }
+  body.auth-page::after { display: none; }
+  .auth-container {
+    max-width: 100%; min-height: 100vh;
+    padding: 44px 28px; border-right: none;
+    box-shadow: none;
+  }
+  body.auth-page .bg-mesh::before { right: -120px; opacity: 0.35; }
+}
+@media (max-width: 420px) {
+  .auth-container { padding: 36px 20px; }
+  .auth-container h2 { font-size: 1.8rem; }
 }

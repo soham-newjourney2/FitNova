@@ -18,18 +18,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const postModal = document.getElementById('postModal');
     const startPostBtn = document.getElementById('startPostBtn');
     if (startPostBtn) {
-        startPostBtn.onclick = () => postModal.style.display = 'block';
+        startPostBtn.onclick = () => postModal.classList.add('open');
     }
     
     document.querySelectorAll('.close-modal').forEach(btn => {
         btn.onclick = () => {
-            btn.closest('.modal').style.display = 'none';
+            btn.closest('.modal').classList.remove('open');
         }
     });
     
     window.onclick = (e) => {
         if (e.target.classList.contains('modal')) {
-            e.target.style.display = 'none';
+            e.target.classList.remove('open');
         }
     };
 
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     imagePreview.src = '';
                     uploadLabel.querySelector('span').innerText = 'Click to add a photo';
                     
-                    postModal.style.display = 'none';
+                    postModal.classList.remove('open');
                     await loadPosts();
                 }
             } catch(e) { 
@@ -212,12 +212,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const commentsModal = document.getElementById('commentsModal');
     
     if (document.querySelector('.close-comments-modal')) {
-        document.querySelector('.close-comments-modal').onclick = () => commentsModal.style.display = 'none';
+        document.querySelector('.close-comments-modal').onclick = () => commentsModal.classList.remove('open');
     }
 
     window.openComments = async (postId) => {
         activeCommentPostId = postId;
-        commentsModal.style.display = 'flex';
+        commentsModal.classList.add('open');
         await loadComments();
     };
 
@@ -240,12 +240,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     commentsList.innerHTML = post.comments.map(c => {
                         const avatar = c.user?.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(c.user?.name || 'User')}`;
+                        const isOwn = (c.user?._id || c.user) === (localUser._id || localUser.id);
                         return `
-                        <div class="comment-item">
+                        <div class="comment-item ${isOwn ? 'own' : ''}">
                             <img src="${avatar}" alt="" class="comment-avatar">
                             <div class="comment-body">
-                                <strong>${c.user?.name || 'User'} <span style="color:var(--text-secondary); font-weight:normal; font-size:0.8rem; margin-left:8px;">${new Date(c.date).toLocaleDateString([], {month:'short', day:'numeric'})}</span></strong>
+                                ${!isOwn ? `<strong>${c.user?.name || 'User'}</strong>` : ''}
                                 ${c.text}
+                                <span class="comment-date">${new Date(c.date).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</span>
                             </div>
                         </div>
                     `;

@@ -1,71 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitNova | Your Ultimate Fitness Community</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/landing.css">
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Build simple rotating 3D slider
-            const slides = document.querySelectorAll('.slide-3d');
-            let current = 0;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitNova | Your Ultimate Fitness Community</title>
 
-            function updateSlider() {
-                slides.forEach((s, i) => {
-                    s.className = 'slide-3d hidden';
-                    if (i === current) s.classList.add('active');
-                    else if (i === (current - 1 + slides.length) % slides.length) s.classList.add('prev');
-                    else if (i === (current + 1) % slides.length) s.classList.add('next');
-                });
-            }
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-            setInterval(() => {
-                current = (current + 1) % slides.length;
-                updateSlider();
-            }, 3000);
-
-            updateSlider();
-        });
-    </script>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/index.css">
 </head>
-<body class="landing-page">
-    <header class="nav-header">
-        <a href="index.html" class="logo">Fit<span>Nova</span></a>
-        <div>
-            <a href="login.html" style="color: #fff; text-decoration: none; font-weight: 600; margin-right: 1.5rem;">Log In</a>
-            <a href="register.html" class="btn-primary spotify-btn" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">Sign Up</a>
-        </div>
-    </header>
+<body>
 
-    <div class="hero-section">
-        <div class="hero-content animate-fade-up">
-            <h1 class="hero-title">Elevate Your <span>Fitness Journey.</span></h1>
-            <p class="hero-subtitle">Connect with elite trainers, find workout buddies, and crush your goals through immersive challenges. Welcome to the future of fitness social networking.</p>
-            
-            <div class="cta-buttons">
-                <a href="register.html" class="btn-primary spotify-btn">Join Now for Free</a>
-                <a href="login.html" class="btn-secondary spotify-outline">Explore Features</a>
-            </div>
-        </div>
-        
-        <div class="slider-3d-container animate-fade-up" style="animation-delay: 0.3s;">
-            <div class="slider-3d-track">
-                <!-- Fallback unsplash images for sports vibe -->
-                <div class="slide-3d active" style="background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80');"></div>
-                <div class="slide-3d hidden" style="background-image: url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&q=80');"></div>
-                <div class="slide-3d hidden" style="background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80');"></div>
-                <div class="slide-3d hidden" style="background-image: url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&q=80');"></div>
-            </div>
-        </div>
+  <!-- =====================================================
+       NAVBAR  —  Liquid Crystal pill (iOS style)
+  ===================================================== -->
+  <header class="nav" id="nav">
+    <a href="index.html" class="logo">Fit<span>Nova</span></a>
 
-        <div class="ticker-wrapper">
-            <div class="infinite-carousel">
-                <div class="ticker-item">Deadlifts <span>|</span> Marathon Prep <span>|</span> Crossfit <span>|</span> Yoga Flow <span>|</span> HIIT <span>|</span> Local Bootcamps <span>|</span> Calisthenics <span>|</span> </div>
-                <div class="ticker-item">Deadlifts <span>|</span> Marathon Prep <span>|</span> Crossfit <span>|</span> Yoga Flow <span>|</span> HIIT <span>|</span> Local Bootcamps <span>|</span> Calisthenics <span>|</span> </div>
-            </div>
-        </div>
+    <nav aria-label="Primary navigation">
+      <ul class="nav-links">
+        <li><a href="#" class="active">Overview</a></li>
+        <li><a href="#">Workouts</a></li>
+        <li><a href="#">Diet Plan</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">Calendar</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="login.html" class="btn-ghost">
+        <span class="ghost-txt">Log In</span>
+      </a>
+      <a href="register.html" class="btn-green">Sign Up →</a>
+      <button class="hamburger" id="ham" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
+  </header>
+
+  <!-- Mobile dropdown -->
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+    <a href="#" class="active">Overview</a>
+    <a href="#">Workouts</a>
+    <a href="#">Diet Plan</a>
+    <a href="#">Community</a>
+    <a href="#">Calendar</a>
+    <div class="mob-divider"></div>
+    <a href="login.html" class="btn-ghost" style="justify-content:center">Log In</a>
+    <a href="register.html" class="btn-green">Sign Up Free →</a>
+  </nav>
+
+
+  <!-- =====================================================
+       HERO SECTION
+  ===================================================== -->
+  <section class="hero">
+
+    <!-- Ambient background orbs -->
+    <div class="bg-mesh">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+
+    <div class="hero-inner">
+
+      <!-- Left: text -->
+      <div class="hero-text">
+        <div class="pill-badge">
+          <span class="pill-dot">✦</span>
+          AI-Powered Fitness Platform
+        </div>
+
+        <h1 class="hero-title">
+          Elevate Your<br>
+          <span class="accent">Fitness Journey.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Connect with elite trainers, track macros, find workout buddies,
+          and crush your goals through immersive challenges.
+          Welcome to the future of fitness.
+        </p>
+
+        <div class="hero-ctas">
+          <a href="register.html" class="cta-primary">Join for Free →</a>
+          <a href="login.html"    class="cta-secondary">Explore Features</a>
+        </div>
+
+        <div class="social-proof">
+          <div class="avatars">
+            <div class="av av1">JK</div>
+            <div class="av av2">SM</div>
+            <div class="av av3">AL</div>
+            <div class="av av4">RB</div>
+          </div>
+          <p class="sp-text">
+            <strong>50,000+</strong> athletes already<br>crushing their goals
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: dashboard card -->
+      <div class="hero-card-wrap">
+        <div class="dash">
+          <span class="ftag ftag1">🔥 7-day streak!</span>
+          <span class="ftag ftag2">💪 +2.3 kg muscle</span>
+
+          <div class="d-head">
+            <div class="d-user">
+              <div class="d-av">VU</div>
+              <div>
+                <div class="d-name">Victoria Ursatiy</div>
+                <div class="d-meta">158 cm · 44 kg</div>
+              </div>
+            </div>
+            <div class="d-icons">
+              <div class="d-ico">🌙</div>
+              <div class="d-ico gi">+</div>
+            </div>
+          </div>
+
+          <div class="d-tabs">
+            <div class="dtab active">Overview</div>
+            <div class="dtab">Workouts</div>
+            <div class="dtab">Diet</div>
+            <div class="dtab">Settings</div>
+          </div>
+
+          <div class="d-grid">
+            <div class="dcard">
+              <div class="dc-lbl">Calories Today</div>
+              <div class="dc-val">978</div>
+              <div class="dc-sub">/ 1720 kcal goal</div>
+            </div>
+            <div class="dcard">
+              <div class="dc-lbl">Streak</div>
+              <div class="streak-v">7 🔥</div>
+              <div class="dc-sub">days in a row</div>
+            </div>
+            <div class="dcard">
+              <div class="dc-lbl">Macros</div>
+              <div class="mbars">
+                <div class="mrow">
+                  <span class="mlbl">Protein</span>
+                  <div class="mtrack"><div class="mfill p"></div></div>
+                  <span class="mval">17g</span>
+                </div>
+                <div class="mrow">
+                  <span class="mlbl">Carbs</span>
+                  <div class="mtrack"><div class="mfill c"></div></div>
+                  <span class="mval">122g</span>
+                </div>
+                <div class="mrow">
+                  <span class="mlbl">Fat</span>
+                  <div class="mtrack"><div class="mfill f"></div></div>
+                  <span class="mval">33g</span>
+                </div>
+              </div>
+            </div>
+            <div class="dcard">
+              <div class="dc-lbl">This Week</div>
+              <div class="wdays">
+                <div class="wday done">M</div>
+                <div class="wday done">T</div>
+                <div class="wday done">W</div>
+                <div class="wday today">T</div>
+                <div class="wday">F</div>
+                <div class="wday">S</div>
+                <div class="wday">S</div>
+              </div>
+              <div class="act-mini" id="actMini"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /hero-inner -->
+
+    <!-- Scrolling ticker -->
+    <div class="ticker" role="marquee" aria-label="Fitness activity types">
+      <div class="ticker-track">
+        <div class="ticker-item">
+          Deadlifts <span>|</span> Marathon Prep <span>|</span>
+          CrossFit <span>|</span> Yoga Flow <span>|</span>
+          HIIT <span>|</span> Bootcamps <span>|</span>
+          Calisthenics <span>|</span> Pilates <span>|</span>
+          Strength Training <span>|</span>
+        </div>
+        <div class="ticker-item">
+          Deadlifts <span>|</span> Marathon Prep <span>|</span>
+          CrossFit <span>|</span> Yoga Flow <span>|</span>
+          HIIT <span>|</span> Bootcamps <span>|</span>
+          Calisthenics <span>|</span> Pilates <span>|</span>
+          Strength Training <span>|</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- =====================================================
+       STATS BAR
+  ===================================================== -->
+  <section class="stats-bar">
+    <div class="stats-inner">
+      <div>
+        <div class="sn" data-v="50K+">–</div>
+        <div class="sl">Active Athletes</div>
+      </div>
+      <div>
+        <div class="sn" data-v="2.4M">–</div>
+        <div class="sl">Workouts Logged</div>
+      </div>
+      <div>
+        <div class="sn" data-v="1,200+">–</div>
+        <div class="sl">Expert Trainers</div>
+      </div>
+      <div>
+        <div class="sn" data-v="98%">–</div>
+        <div class="sl">Goal Achievement</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       3D IMAGE SLIDER
+  ===================================================== -->
+  <section class="slider-section">
+    <div class="eyebrow">Community Stories</div>
+    <h2 class="sec-title">Real people.<br>Real transformations.</h2>
+    <div class="slider3d">
+      <div class="slider3d-track">
+        <div class="s3d active" style="background-image:url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80')"></div>
+        <div class="s3d hidden" style="background-image:url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=800&q=80')"></div>
+        <div class="s3d hidden" style="background-image:url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&q=80')"></div>
+        <div class="s3d hidden" style="background-image:url('https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&q=80')"></div>
+      </div>
+    </div>
+    <div class="slider-dots" id="sdots"></div>
+  </section>
+
+
+  <!-- =====================================================
+       FEATURES GRID
+  ===================================================== -->
+  <section class="features-section">
+    <div class="eyebrow">Everything you need</div>
+    <h2 class="sec-title">Built for serious athletes.</h2>
+    <div class="features-grid">
+      <div class="fcard">
+        <div class="ficon fi0">🤖</div>
+        <div class="fname">AI Diet Planner</div>
+        <div class="fdesc">Personalised meal plans that adapt to your goals, allergies, and preferences automatically.</div>
+      </div>
+      <div class="fcard">
+        <div class="ficon fi1">📊</div>
+        <div class="fname">Smart Tracking</div>
+        <div class="fdesc">Log workouts, macros, and progress photos. See detailed analytics and insights in real time.</div>
+      </div>
+      <div class="fcard">
+        <div class="ficon fi2">🔥</div>
+        <div class="fname">Live Challenges</div>
+        <div class="fdesc">Join community challenges, compete on leaderboards, and earn badges for consistency.</div>
+      </div>
+      <div class="fcard">
+        <div class="ficon fi3">👥</div>
+        <div class="fname">Workout Buddies</div>
+        <div class="fdesc">Match with local athletes at your level and schedule gym sessions together effortlessly.</div>
+      </div>
+      <div class="fcard">
+        <div class="ficon fi4">⭐</div>
+        <div class="fname">Elite Trainers</div>
+        <div class="fdesc">Book 1-on-1 sessions with verified coaches or follow expert curated training programmes.</div>
+      </div>
+      <div class="fcard">
+        <div class="ficon fi5">📅</div>
+        <div class="fname">Smart Calendar</div>
+        <div class="fdesc">Auto-schedule workouts, recovery reminders, rest days, and deload weeks included.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       CTA SECTION
+  ===================================================== -->
+  <section class="cta-section">
+    <div class="cta-box">
+      <h2 class="cta-title">Ready to <span>transform</span><br>your body?</h2>
+      <p class="cta-sub">
+        Join 50,000+ athletes already using FitNova to reach their goals faster than ever before.
+      </p>
+      <div class="cta-btns">
+        <a href="register.html" class="cta-primary">Start Free Today →</a>
+        <a href="login.html"    class="cta-secondary">I already have an account</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="f-logo">Fit<span>Nova</span></a>
+      <ul class="f-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <span class="f-copy">© 2026 FitNova. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="js/script.js"></script>
+
 </body>
 </html>

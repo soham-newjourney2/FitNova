@@ -3,76 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trainer Dashboard | FitNova</title>
+    <title>Trainer Dashboard | FitNova Pro</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/trainer-portal.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="bg-mesh"></div>
+    <!-- Ambient background orbs -->
+    <div class="bg-mesh">
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+    </div>
+
     <div class="layout">
-        <!-- TRAINER SIDEBAR -->
-        <aside class="sidebar">
-            <h2>FitNova Pro</h2>
-            <div class="nav-links">
-                <a href="trainer-dashboard.html" class="active">Trainer Dashboard</a>
-                <a href="trainer-bookings.html">My Client Bookings</a>
-                <a href="trainer-setup.html">Profile Setup</a>
-                <a href="community.html">Community Network</a>
-                <a href="events.html">Events & Workshops</a>
-                <a href="#" onclick="logout()">Logout</a>
-            </div>
+        <aside class="sidebar-new">
+            <!-- Injected via sidebar.js -->
         </aside>
         
         <main class="main-content">
-            <div class="top-bar">
-                <h1>Overview</h1>
-                <p style="color: var(--text-secondary);">Welcome to your professional portal.</p>
-            </div>
+            <header class="top-bar">
+                <div class="welcome-text">
+                    <h1>Trainer Overview</h1>
+                    <p class="muted-text">Welcome back to your professional portal.</p>
+                </div>
+            </header>
             
-            <div class="profile-panel" id="tProfilePanel">
-                <div class="profile-avatar" id="tInitial">T</div>
+            <div class="panel profile-panel" id="tProfilePanel" style="margin-bottom: 32px; display: flex; align-items: center; gap: 24px; padding: 24px;">
+                <div class="avatar" id="tInitial" style="width: 64px; height: 64px; background: var(--green-l); color: var(--green-d); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800;">T</div>
                 <div class="profile-info">
-                    <h3 id="tName">Trainer Name</h3>
-                    <p id="tRole">Professional Trainer</p>
+                    <h3 id="tName" style="margin: 0; font-size: 1.25rem;">Trainer Name</h3>
+                    <p id="tRole" class="muted-text">Professional Trainer</p>
                 </div>
             </div>
 
-            <div class="grid-cards">
-                <div class="card">
-                    <h3>Rating</h3>
-                    <div class="value" id="tRating">--</div>
+            <div class="grid-cards" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px;">
+                <div class="panel" style="text-align: center;">
+                    <h3 style="font-size: 0.85rem; color: var(--muted); text-transform: uppercase; margin-bottom: 12px;">Rating</h3>
+                    <div class="value" id="tRating" style="font-size: 2rem; font-weight: 800; color: var(--green-d);">--</div>
                 </div>
-                <div class="card">
-                    <h3>Total Clients Booked</h3>
-                    <div class="value" id="tTotalBookings">0</div>
+                <div class="panel" style="text-align: center;">
+                    <h3 style="font-size: 0.85rem; color: var(--muted); text-transform: uppercase; margin-bottom: 12px;">Clients</h3>
+                    <div class="value" id="tTotalBookings" style="font-size: 2rem; font-weight: 800; color: var(--green-d);">0</div>
                 </div>
-                <div class="card">
-                    <h3>Reviews Received</h3>
-                    <div class="value" id="tTotalReviews">0</div>
+                <div class="panel" style="text-align: center;">
+                    <h3 style="font-size: 0.85rem; color: var(--muted); text-transform: uppercase; margin-bottom: 12px;">Reviews</h3>
+                    <div class="value" id="tTotalReviews" style="font-size: 2rem; font-weight: 800; color: var(--green-d);">0</div>
                 </div>
             </div>
-            <div class="panel" style="margin-bottom: 2rem;">
-                <h3>Manage Availability</h3>
-                <p style="color:var(--text-secondary); margin-bottom:1rem;">Add open time slots for clients to book. Booked slots will automatically be removed from this list.</p>
-                <form id="addSlotForm" style="display:flex; gap:1rem; align-items:center; margin-bottom: 1.5rem;">
-                    <input type="datetime-local" id="newSlotTime" class="form-control" style="padding: 0.6rem; border-radius: 4px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.3); color: #fff;" required>
-                    <button type="submit" class="btn-primary" style="padding: 0.6rem 1.5rem; margin:0;">Add Slot</button>
-                </form>
-                <div id="slotMsg"></div>
+
+            <div class="panel" style="margin-bottom: 32px;">
+                <h3 style="margin-bottom: 8px;">Manage Availability</h3>
+                <p class="muted-text" style="margin-bottom: 24px;">Add open time slots for clients to book.</p>
                 
-                <h4 style="color:#fff; margin-bottom:0.5rem; font-size:1rem;">Current Published Slots</h4>
-                <div id="slotsList" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                    <p style="color:var(--text-secondary); font-size: 0.9rem;">Loading slots...</p>
+                <form id="addSlotForm" style="display:flex; gap:16px; align-items:flex-end; margin-bottom: 32px; flex-wrap: wrap;">
+                    <div class="form-group" style="margin: 0; flex: 1; min-width: 200px;">
+                        <label>Select Date & Time</label>
+                        <input type="datetime-local" id="newSlotTime" required>
+                    </div>
+                    <button type="submit" class="btn-green" style="height: 46px; padding: 0 24px;">Add Slot</button>
+                </form>
+                
+                <div id="slotMsg" style="margin-bottom: 16px;"></div>
+                
+                <h4 style="font-size: 0.95rem; margin-bottom: 16px;">Published Slots</h4>
+                <div id="slotsList" style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <p class="loading-text">Loading slots...</p>
                 </div>
             </div>
 
             <div class="panel">
-                <h3>Quick Actions</h3>
-                <p style="color:var(--text-secondary); margin-bottom:1rem;">Manage your portfolio and connect with clients.</p>
-                <div style="display:flex; gap:1rem;">
-                    <a href="trainer-bookings.html" class="btn-primary" style="text-align:center; padding:0.8rem 1.5rem; text-decoration:none;">View Appointments</a>
-                    <a href="trainer-setup.html" class="btn-secondary" style="text-align:center; padding:0.8rem 1.5rem; border:1px solid #4facfe; color:#4facfe; border-radius:8px; text-decoration:none;">Edit Professional Profile</a>
+                <h3 style="margin-bottom: 16px;">Quick Actions</h3>
+                <div style="display:flex; gap:16px;">
+                    <a href="trainer-bookings.html" class="btn-green" style="text-decoration:none;">View Appointments</a>
+                    <a href="trainer-setup.html" class="btn-ghost" style="text-decoration:none;">Edit Professional Profile</a>
                 </div>
             </div>
             

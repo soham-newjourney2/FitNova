@@ -2,40 +2,46 @@
    TRAINER PORTAL (Dashboard & Bookings)
    ========================================= */
 
+@import url('style.css');
+
 .profile-panel {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--border-color);
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.1);
-}
-
-.profile-avatar {
-    border: 2px solid var(--primary-accent);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
-}
-
-.profile-info h3 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--primary-accent);
+    background: var(--white);
+    border: 1px solid var(--border2);
+    box-shadow: var(--shadow-card);
 }
 
 .card .value {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--primary-accent);
-    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    color: var(--green-d);
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
 }
 
-.panel h3 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--primary-accent);
+table {
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.form-control {
-    background: rgba(0, 0, 0, 0.5) !important;
-    border: 1px solid rgba(0, 255, 136, 0.2) !important;
-    color: #fff !important;
+th {
+    background: var(--bg2);
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 16px 24px;
+    text-align: left;
 }
 
-.form-control:focus {
-    border-color: var(--primary-accent) !important;
+td {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
 }
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: var(--r-pill);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.status-pending { background: #fff8e1; color: #f57f17; }
+.status-confirmed { background: #e8f5e9; color: #2e7d32; }
