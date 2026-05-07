@@ -29,7 +29,7 @@ const syncGroups = async () => {
                 await chatRoom.save();
             }
         }
-        console.log('Sync complete.');
+        console.log('Sync complete.,ts 2. pass"');
         process.exit(0);
     } catch (err) {
         console.error(err);
